@@ -20,6 +20,6 @@ Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => [ '
 
     #test route
     Route::get('/admin-route' , function() {
-        dd(app()->getLocale() . 'admin test');
+        dd('admin routes');
     });
 });
