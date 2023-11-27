@@ -1582,6 +1582,8 @@
     <script src="{{ asset('/dashboard/assets/vendor/js/menu.js') }}"></script>
     <!-- endbuild -->
 
+    <!-- Notifications js function -->
+    <script src="{{ asset('dashboard/js/notifications-helper.js') }}"></script>
     <!-- Vendors JS -->
 
     <!-- Main JS -->
