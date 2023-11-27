@@ -119,7 +119,7 @@
             <p class="mb-4">Make your app management easy and fun!</p>
 
             <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
-              <div class="mb-3">
+              {{-- <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
                 <input
                   type="text"
@@ -129,7 +129,7 @@
                   placeholder="Enter your username"
                   autofocus
                 />
-              </div>
+              </div> --}}
               <div class="mb-3">
                 <label for="email" class="form-label">Email</label>
                 <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
@@ -149,7 +149,7 @@
                 </div>
               </div>
 
-              <div class="mb-3">
+              {{-- <div class="mb-3">
                 <div class="form-check">
                   <input class="form-check-input" type="checkbox" id="terms-conditions" name="terms" />
                   <label class="form-check-label" for="terms-conditions">
@@ -157,11 +157,11 @@
                     <a href="javascript:void(0);">privacy policy & terms</a>
                   </label>
                 </div>
-              </div>
-              <button class="btn btn-primary d-grid w-100">Sign up</button>
+              </div> --}}
+              <button class="btn btn-primary d-grid w-100">Login</button>
             </form>
 
-            <p class="text-center">
+            {{-- <p class="text-center">
               <span>Already have an account?</span>
               <a href="auth-login-basic.html">
                 <span>Sign in instead</span>
@@ -170,9 +170,9 @@
 
             <div class="divider my-4">
               <div class="divider-text">or</div>
-            </div>
+            </div> --}}
 
-            <div class="d-flex justify-content-center">
+            {{-- <div class="d-flex justify-content-center">
               <a href="javascript:;" class="btn btn-icon btn-label-facebook me-3">
                 <i class="tf-icons bx bxl-facebook"></i>
               </a>
@@ -184,7 +184,7 @@
               <a href="javascript:;" class="btn btn-icon btn-label-twitter">
                 <i class="tf-icons bx bxl-twitter"></i>
               </a>
-            </div>
+            </div> --}}
           </div>
         </div>
         <!-- Register Card -->
