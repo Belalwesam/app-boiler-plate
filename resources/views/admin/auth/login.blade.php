@@ -115,8 +115,8 @@
               </a>
             </div>
             <!-- /Logo -->
-            <h4 class="mb-2">Adventure starts here 🚀</h4>
-            <p class="mb-4">Make your app management easy and fun!</p>
+            <h4 class="mb-2">@lang('auth.welcome') 🚀</h4>
+            <p class="mb-4">@lang('auth.welcome_sub')</p>
 
             <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
               {{-- <div class="mb-3">
@@ -131,11 +131,11 @@
                 />
               </div> --}}
               <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
+                <label for="email" class="form-label">@lang('auth.email')</label>
+                <input type="text" class="form-control" id="email" name="email" placeholder="@lang('auth.email_placeholder')" />
               </div>
               <div class="mb-3 form-password-toggle">
-                <label class="form-label" for="password">Password</label>
+                <label class="form-label" for="password">@lang('auth.password')</label>
                 <div class="input-group input-group-merge">
                   <input
                     type="password"
@@ -158,7 +158,7 @@
                   </label>
                 </div>
               </div> --}}
-              <button class="btn btn-primary d-grid w-100">Login</button>
+              <button class="btn btn-primary d-grid w-100">@lang('auth.login')</button>
             </form>
 
             {{-- <p class="text-center">
