@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Auth\AuthController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -20,8 +21,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
     Route::prefix('admin')->group(function () {
 
         #auth routes
-        Route::get('/admin-route', function () {
-            return view('admin.auth.login');
-        });
+        Route::view('login', 'admin.auth.login')->name('admin.login_form');
+        Route::post('login', [AuthController::class, 'login'])->name('admin.login');
     });
 });
