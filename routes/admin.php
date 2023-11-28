@@ -15,11 +15,13 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 */
 
 #localization middlewares and prefixing
-Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' => [ 'localeSessionRedirect', 'localizationRedirect']], function () {
-    #add localized routes here 
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect']], function () {
+    #add localized routes here and the prexfix them with admin keyword 
+    Route::prefix('admin')->group(function () {
 
-    #test route
-    Route::get('/admin-route' , function() {
-        return view('admin.auth.login');
+        #auth routes
+        Route::get('/admin-route', function () {
+            return view('admin.auth.login');
+        });
     });
 });
