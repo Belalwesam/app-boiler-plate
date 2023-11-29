@@ -121,9 +121,13 @@
                 />
               </div> --}}
                             <div class="mb-3">
-                                <label for="email" class="form-label">@lang('auth.email')</label>
-                                <input type="text" class="form-control" id="email" name="email"
-                                    placeholder="@lang('auth.email_placeholder')" />
+                                <input type="text" class="form-control" id="email" name="login_field"
+                                    placeholder="@lang('auth.login_field')" />
+                                @error('login_field')
+                                    <small class="fw-bold text-danger">
+                                        error
+                                    </small>
+                                @enderror
                             </div>
                             <div class="mb-3 form-password-toggle">
                                 <label class="form-label" for="password">@lang('auth.password')</label>
@@ -133,6 +137,11 @@
                                         aria-describedby="password" />
                                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                                 </div>
+                                @error('password')
+                                    <small class="fw-bold text-danger">
+                                        error
+                                    </small>
+                                @enderror
                             </div>
 
                             {{-- <div class="mb-3">
