@@ -23,7 +23,5 @@ class AuthController extends Controller
         } else {
             $credntials['username'] = $request->login_field;
         }
-
-        dd($credntials);
     }
 }
