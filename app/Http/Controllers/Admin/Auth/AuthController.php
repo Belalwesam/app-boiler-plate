@@ -14,6 +14,16 @@ class AuthController extends Controller
         #implement login using the username or email
         #use the custom guard called admins to authenticate routes 
         #work on roles , permissions and seeders for super admin
-        dd($request->all());
+
+        #retrive credentials
+        $credntials['password'] = $request->password;
+
+        if (filter_var($request->login_field, FILTER_VALIDATE_EMAIL)) {
+            $credntials['email'] = $request->login_field;
+        } else {
+            $credntials['username'] = $request->login_field;
+        }
+
+        dd($credntials);
     }
 }
