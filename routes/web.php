@@ -15,11 +15,11 @@ use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 */
 
 #localization middlewares and prefixing
-Route::group(['prefix' => LaravelLocalization::setLocale() , 'middleware' =>[ 'localeSessionRedirect', 'localizationRedirect']], function () {
+Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['localeSessionRedirect', 'localizationRedirect']], function () {
     #add localized routes here 
 
     #test route
-    Route::get('/' , function() {
-        dd(app()->getLocale());
-    });
+    Route::get('/login-placeholder', function () {
+        dd("the placeholder login page");
+    })->name('login');
 });

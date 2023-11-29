@@ -26,9 +26,9 @@ class AuthController extends Controller
         }
 
         if (Auth::guard('admin')->attempt($credntials)) {
-            dd('authenticated an admin');
+            return to_route('admin.index');
         }
 
-        dd('did not authenticate');
+        return back()->with('processFail', 'failed');
     }
 }
