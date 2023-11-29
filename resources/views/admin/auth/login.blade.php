@@ -125,7 +125,7 @@
                                     placeholder="@lang('auth.login_field')" />
                                 @error('login_field')
                                     <small class="fw-bold text-danger">
-                                        error
+                                        {{ $message }}
                                     </small>
                                 @enderror
                             </div>
@@ -139,7 +139,7 @@
                                 </div>
                                 @error('password')
                                     <small class="fw-bold text-danger">
-                                        error
+                                        {{ $message }}
                                     </small>
                                 @enderror
                             </div>
