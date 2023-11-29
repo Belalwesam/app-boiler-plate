@@ -109,11 +109,13 @@
                         <form id="formAuthentication" class="mb-3" action="{{ route('admin.login') }}"
                             method="POST">
 
-                            <div class="alert alert-solid-danger alert-dismissible d-flex align-items-center pe-0"
-                                role="alert">
-                                <i class="fa-solid fa-triangle-exclamation me-2"></i>
-                                @lang('auth.login_failed')
-                            </div>
+                            @if (session('processFail'))
+                                <div class="alert alert-solid-danger alert-dismissible d-flex align-items-center pe-0"
+                                    role="alert">
+                                    <i class="fa-solid fa-triangle-exclamation me-2"></i>
+                                    @lang('auth.login_failed')
+                                </div>
+                            @endif
                             @csrf
                             {{-- <div class="mb-3">
                 <label for="username" class="form-label">Username</label>
