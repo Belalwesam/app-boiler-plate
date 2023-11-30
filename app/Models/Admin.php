@@ -55,7 +55,7 @@ class Admin extends Authenticatable
         }
         $modified_name = $name[0] . $modified_name;
         if (count($words_count) === 1) {
-            $modified_name = substr($name, 0, 2);
+            $modified_name = strtoupper(substr($name, 0, 2));
         }
         return $modified_name;
     }
