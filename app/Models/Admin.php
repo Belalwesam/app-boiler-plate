@@ -48,15 +48,30 @@ class Admin extends Authenticatable
     public function getInitials()
     {
         $name = $this->name;
-        $words_count = str_word_count($name, 1);
-        $modified_name = '';
-        foreach ($words_count as $word) {
-            $modified_name = strtoupper(substr($word, 0, 1));
+        $words = preg_split('/\s+/', $name, -1, PREG_SPLIT_NO_EMPTY);
+        $initials = '';
+
+        $firstWord = $words[0] ?? '';
+        $lastWord = end($words) ?: '';
+
+        $firstCharFirstWord = mb_substr($firstWord, 0, 1);
+        $firstCharLastWord = mb_substr($lastWord, 0, 1);
+
+        if (preg_match('/\p{Arabic}/u', $firstCharFirstWord)) {
+            $initials .= $firstCharFirstWord . ' ';
+        } else {
+            $initials .= strtoupper($firstCharFirstWord);
         }
-        $modified_name = $name[0] . $modified_name;
-        if (count($words_count) === 1) {
-            $modified_name = strtoupper(substr($name, 0, 2));
+
+        if ($firstWord !== $lastWord) {
+            if (preg_match('/\p{Arabic}/u', $firstCharLastWord)) {
+                $initials .= $firstCharLastWord . ' ';
+            } else {
+                $initials .= strtoupper($firstCharLastWord);
+            }
         }
-        return $modified_name;
+
+
+        return trim($initials);
     }
 }
