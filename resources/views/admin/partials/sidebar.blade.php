@@ -53,12 +53,11 @@
 
      <ul class="menu-inner py-1">
          <!-- Apps & Pages -->
-         <li class="menu-header small text-uppercase"><span class="menu-header-text">Apps &amp;
-                 Pages</span></li>
+         <li class="menu-header small text-uppercase"><span class="menu-header-text">Dashboard</span></li>
          <li class="menu-item">
-             <a href="app-calendar.html" class="menu-link">
-                 <i class="menu-icon tf-icons bx bx-calendar"></i>
-                 <div data-i18n="Calendar">Calendar</div>
+             <a href="{{ route('admin.index') }}" class="menu-link">
+                 <i class="menu-icon tf-icons bx bxs-dashboard"></i>
+                 <div data-i18n="@lang('nav.dashboard')">@lang('nav.dashboard')</div>
              </a>
          </li>
      </ul>
