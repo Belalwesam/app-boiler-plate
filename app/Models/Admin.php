@@ -51,26 +51,32 @@ class Admin extends Authenticatable
         $words = preg_split('/\s+/', $name, -1, PREG_SPLIT_NO_EMPTY);
         $initials = '';
 
-        $firstWord = $words[0] ?? '';
-        $lastWord = end($words) ?: '';
+        if (count($words) === 1) {
+            $firstChar = mb_substr($name, 0, 1);
+            $secondChar = mb_substr($name, 1, 1);
 
-        $firstCharFirstWord = mb_substr($firstWord, 0, 1);
-        $firstCharLastWord = mb_substr($lastWord, 0, 1);
-
-        if (preg_match('/\p{Arabic}/u', $firstCharFirstWord)) {
-            $initials .= $firstCharFirstWord . ' ';
+            $initials .= $firstChar . $secondChar;
         } else {
-            $initials .= strtoupper($firstCharFirstWord);
-        }
+            $firstWord = $words[0] ?? '';
+            $lastWord = end($words) ?: '';
 
-        if ($firstWord !== $lastWord) {
-            if (preg_match('/\p{Arabic}/u', $firstCharLastWord)) {
-                $initials .= $firstCharLastWord . ' ';
+            $firstCharFirstWord = mb_substr($firstWord, 0, 1);
+            $firstCharLastWord = mb_substr($lastWord, 0, 1);
+
+            if (preg_match('/\p{Arabic}/u', $firstCharFirstWord)) {
+                $initials .= $firstCharFirstWord . ' ';
             } else {
-                $initials .= strtoupper($firstCharLastWord);
+                $initials .= strtoupper($firstCharFirstWord);
+            }
+
+            if ($firstWord !== $lastWord) {
+                if (preg_match('/\p{Arabic}/u', $firstCharLastWord)) {
+                    $initials .= $firstCharLastWord . ' ';
+                } else {
+                    $initials .= strtoupper($firstCharLastWord);
+                }
             }
         }
-
 
         return trim($initials);
     }
