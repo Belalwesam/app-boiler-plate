@@ -376,9 +376,8 @@
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                        <div class="avatar avatar-online">
-                            <img src="{{ asset('dashboard/assets/img/avatars/1.png') }}" alt = "users avatar"
-                                class="rounded-circle" />
+                        <div class="avatar">
+                            <span class="avatar-initial rounded-circle bg-info">pi</span>
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
