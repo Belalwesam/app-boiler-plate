@@ -22,8 +22,9 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         #auth routes
         Route::view('login', 'admin.auth.login')->name('admin.login_form')->middleware('guest:admin');
         Route::post('login', [AuthController::class, 'login'])->name('admin.login')->middleware('guest:admin');
+        Route::get('/logout', [AuthController::class, 'logout'])->name('admin.logout')->middleware('auth:admin');
 
-
+        #routes that need authetication to interact with
         Route::group(['middleware' => 'auth:admin', 'as' => 'admin.'], function () {
             #placeholder route 
             Route::view('/', 'admin.pages.index')->name('index');

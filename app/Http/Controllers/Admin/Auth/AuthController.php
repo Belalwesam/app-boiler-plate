@@ -31,4 +31,10 @@ class AuthController extends Controller
 
         return back()->with('processFail', 'failed');
     }
+
+    public function logout()
+    {
+        Auth::guard('admin')->logout();
+        return to_route('admin.login');
+    }
 }
