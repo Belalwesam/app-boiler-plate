@@ -22,25 +22,32 @@
                 <!-- Language -->
                 <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
-                        <i class="fi fi-us fis rounded-circle fs-3 me-1"></i>
+                        <i
+                            class="fi {{ app()->getLocale() === 'en' ? 'fi-us' : 'fi-ae' }} fis rounded-circle fs-3 me-1"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">
-                        <li>
-                            <a class="dropdown-item" href="javascript:void(0);" data-language="en">
-                                <i class="fi fi-us fis rounded-circle fs-4 me-1"></i>
-                                <span class="align-middle">English</span>
-                            </a>
-                        </li>
+                        @foreach (LaravelLocalization::getSupportedLocales() as $key => $value)
+                            <li>
+                                <a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($key) }}">
+                                    @if ($key === 'en')
+                                        <i class="fi fi-us fis rounded-circle fs-4 me-1"></i>
+                                    @else
+                                        <i class="fi fi-ae fis rounded-circle fs-4 me-1"></i>
+                                    @endif
+                                    <span class="align-middle">{{ $value['native'] }}</span>
+                                </a>
+                            </li>
+                        @endforeach
                     </ul>
                 </li>
                 <!--/ Language -->
 
                 <!-- Style Switcher -->
-                <li class="nav-item me-2 me-xl-0">
+                {{-- <li class="nav-item me-2 me-xl-0">
                     <a class="nav-link style-switcher-toggle hide-arrow" href="javascript:void(0);">
                         <i class="bx bx-sm"></i>
                     </a>
-                </li>
+                </li> --}}
                 <!--/ Style Switcher -->
 
                 <!-- Quick links  -->
@@ -141,7 +148,7 @@
                 <!-- Quick links -->
 
                 <!-- Notification -->
-                <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2">
+                {{-- <li class="nav-item dropdown-notifications navbar-dropdown dropdown me-3 me-xl-2">
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown"
                         data-bs-auto-close="outside" aria-expanded="false">
                         <i class="bx bx-bell bx-sm"></i>
@@ -363,13 +370,12 @@
                             </a>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
                 <!--/ Notification -->
 
                 <!-- User -->
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
-                        data-bs-toggle="dropdown">
+                    <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                         <div class="avatar avatar-online">
                             <img src="{{ asset('dashboard/assets/img/avatars/1.png') }}" alt = "users avatar"
                                 class="rounded-circle" />
@@ -386,7 +392,7 @@
                                         </div>
                                     </div>
                                     <div class="flex-grow-1">
-                                        <span class="fw-semibold d-block lh-1">John Doe</span>
+                                        <span class="fw-semibold d-block lh-1">{{ auth('admin')->user()->name }}</span>
                                         <small>Admin</small>
                                     </div>
                                 </div>
