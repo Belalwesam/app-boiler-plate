@@ -68,7 +68,7 @@
 
                     <div class="container-fluid flex-grow-1 container-p-y">
                         <!-- Pages Content Here -->
-                            Here
+                        @yield('content')
                         <!--/ Pages Content Here -->
                     </div>
                     <!-- / Content -->
