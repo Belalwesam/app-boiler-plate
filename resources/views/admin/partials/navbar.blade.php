@@ -377,7 +377,8 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                     <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                         <div class="avatar">
-                            <span class="avatar-initial rounded-circle bg-info">pi</span>
+                            <span
+                                class="avatar-initial rounded-circle bg-info">{{ auth('admin')->user()->getInitials() }}</span>
                         </div>
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end">

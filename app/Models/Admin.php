@@ -42,4 +42,21 @@ class Admin extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+
+    #get initials to be displayed through the app
+    public function getInitials()
+    {
+        $name = $this->name;
+        $words_count = str_word_count($name, 1);
+        $modified_name = '';
+        foreach ($words_count as $word) {
+            $modified_name = strtoupper(substr($word, 0, 1));
+        }
+        $modified_name = $name[0] . $modified_name;
+        if (count($words_count) === 1) {
+            $modified_name = substr($name, 0, 2);
+        }
+        return $modified_name;
+    }
 }
