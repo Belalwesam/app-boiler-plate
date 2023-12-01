@@ -1,5 +1,6 @@
-<?php 
+<?php
 
 return [
-    'dashboard' => 'Dashbord'
+    'dashboard' => 'Dashbord',
+    'roles_and_permissions' => 'Role & Permissions'
 ];
