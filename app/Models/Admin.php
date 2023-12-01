@@ -83,9 +83,15 @@ class Admin extends Authenticatable
     }
 
 
-
+    #return the role for the admin 
     public function getRole()
     {
         return count($this->getRoleNames()) > 0 ? $this->getRoleNames()[0] : 'Default';
+    }
+
+    #check if the autherticated admin has the permission to do an action through roles and permissions
+    public function hasAbilityTo($permission)
+    {
+        return $this->hasRole('Super Admin') || $this->can($permission) ? true : false;
     }
 }

@@ -62,14 +62,16 @@
          </li>
 
 
-         <!-- Roles & Permissions -->
-         <li class="menu-header small text-uppercase"><span class="menu-header-text">@lang('nav.roles_and_permissions')</span></li>
-         <li class="menu-item">
-             <a href="{{ route('admin.roles.index') }}" class="menu-link">
-                 <i class="menu-icon tf-icons bx bxs-check-shield"></i>
-                 <div data-i18n="@lang('nav.roles_and_permissions')">@lang('nav.roles_and_permissions')</div>
-             </a>
-         </li>
+         @if (auth()->user()->hasAbilityTo('see roles'))
+             <!-- Roles & Permissions -->
+             <li class="menu-header small text-uppercase"><span class="menu-header-text">@lang('nav.roles_and_permissions')</span></li>
+             <li class="menu-item">
+                 <a href="{{ route('admin.roles.index') }}" class="menu-link">
+                     <i class="menu-icon tf-icons bx bxs-check-shield"></i>
+                     <div data-i18n="@lang('nav.roles_and_permissions')">@lang('nav.roles_and_permissions')</div>
+                 </a>
+             </li>
+         @endif
      </ul>
  </aside>
  <!-- / Menu -->
