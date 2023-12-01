@@ -39,6 +39,7 @@
     <link rel="stylesheet"
         href="{{ asset('/dashboard/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
     <link rel="stylesheet" href="{{ asset('/dashboard/assets/vendor/libs/typeahead-js/typeahead.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/dashboard/assets/vendor/libs/sweetalert2/sweetalert2.css') }}" />
 
     <!-- Page CSS -->
 
@@ -109,12 +110,12 @@
     <!-- endbuild -->
 
     <!-- Notifications js function -->
+    <script src="{{ asset('dashboard/assets/vendor/libs/sweetalert2/sweetalert2.js') }}"></script>
     <script src="{{ asset('dashboard/js/notifications-helper.js') }}"></script>
     <!-- Vendors JS -->
 
     <!-- Main JS -->
     <script src="{{ asset('/dashboard/assets/js/main.js') }}"></script>
-
     @yield('script-vendor')
     @yield('script')
 </body>
