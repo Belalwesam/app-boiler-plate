@@ -101,17 +101,20 @@
                                             <td>
                                                 <div class="d-flex">
                                                     <div class="form-check me-3 me-lg-5">
-                                                        <input class="form-check-input permission-checkbox" value="roles" type="checkbox">
+                                                        <input class="form-check-input permission-checkbox" value="roles"
+                                                            type="checkbox">
                                                         <label class="form-check-label"> Read
                                                         </label>
                                                     </div>
                                                     <div class="form-check me-3 me-lg-5">
-                                                        <input class="form-check-input permission-checkbox" value="users" type="checkbox">
+                                                        <input class="form-check-input permission-checkbox" value="users"
+                                                            type="checkbox">
                                                         <label class="form-check-label"> Write
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input permission-checkbox" value="admins" type="checkbox">
+                                                        <input class="form-check-input permission-checkbox" value="admins"
+                                                            type="checkbox">
                                                         <label class="form-check-label"> Create
                                                         </label>
                                                     </div>
@@ -124,7 +127,8 @@
                             <!-- Permission table -->
                         </div>
                         <div class="col-12 text-center">
-                            <button type="button" id="submit-create-btn" class="btn btn-primary me-sm-3 me-1">@lang('general.create')</button>
+                            <button type="button" id="submit-create-btn"
+                                class="btn btn-primary me-sm-3 me-1">@lang('general.create')</button>
                             <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal"
                                 aria-label="Close">
                                 @lang('general.cancel')
@@ -154,21 +158,23 @@
             })
 
             //create new ajax request
-            $('body').on('click' , '#submit-create-btn' , function() {
+            $('body').on('click', '#submit-create-btn', function() {
                 //collect selected checkboxes
                 let permissions = $('.permission-checkbox:checked').map(function() {
                     return $(this).val()
                 }).get()
                 let data = {
-                    _token : "{!! csrf_token() !!}",
-                    name : $('#name').val(),
-                    permissions : permissions
+                    _token: "{!! csrf_token() !!}",
+                    name: $('#name').val(),
+                    permissions: permissions
                 }
-                //send the request 
 
-                // $.ajax({
-                    
-                // })
+                //send the request 
+                $.ajax({
+                    method: 'POST',
+                    url: "{!! route('admin.roles.store') !!}",
+                    data: data
+                })
             })
         })
     </script>
