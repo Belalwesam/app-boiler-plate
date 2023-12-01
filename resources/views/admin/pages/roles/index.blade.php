@@ -169,11 +169,24 @@
                     permissions: permissions
                 }
 
-                //send the request 
+                let formBtn = $(this) // the button that sends the reuquest (to minipulate ui)
+
                 $.ajax({
                     method: 'POST',
                     url: "{!! route('admin.roles.store') !!}",
-                    data: data
+                    data: data,
+                    beforeSend: function() {
+                        formBtn.html(
+                            '<span class="spinner-border" role="status" aria-hidden="true"></span>'
+                        )
+                        formBtn.prop('disabled', true)
+                    },
+                }).done(function() {
+                    formBtn.html("@lang('general.create')")
+                    formBtn.prop('disabled', false)
+                }).fail(function() {
+                    formBtn.html("@lang('general.create')")
+                    formBtn.prop('disabled', false)
                 })
             })
         })
