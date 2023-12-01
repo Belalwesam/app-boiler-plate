@@ -90,7 +90,7 @@
                                             </td>
                                             <td>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" id="selectAll">
+                                                    <input class="form-check-input" type="checkbox" id="selectAllCheckbox">
                                                     <label class="form-check-label" for="selectAll">
                                                         @lang('general.select_all')</label>
                                                 </div>
@@ -101,21 +101,18 @@
                                             <td>
                                                 <div class="d-flex">
                                                     <div class="form-check me-3 me-lg-5">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            id="userManagementRead">
-                                                        <label class="form-check-label" for="userManagementRead"> Read
+                                                        <input class="form-check-input permission-checkbox" type="checkbox">
+                                                        <label class="form-check-label"> Read
                                                         </label>
                                                     </div>
                                                     <div class="form-check me-3 me-lg-5">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            id="userManagementWrite">
-                                                        <label class="form-check-label" for="userManagementWrite"> Write
+                                                        <input class="form-check-input permission-checkbox" type="checkbox">
+                                                        <label class="form-check-label"> Write
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="checkbox"
-                                                            id="userManagementCreate">
-                                                        <label class="form-check-label" for="userManagementCreate"> Create
+                                                        <input class="form-check-input permission-checkbox" type="checkbox">
+                                                        <label class="form-check-label"> Create
                                                         </label>
                                                     </div>
                                                 </div>
@@ -148,6 +145,14 @@
     <script>
         $('document').ready(function() {
 
+            //handle select all checkbox
+            $('body').on('change', '#selectAllCheckbox', function() {
+                if ($(this).is(":checked")) {
+                    $('.permission-checkbox').prop('checked' , true)
+                } else {
+                    $('.permission-checkbox').prop('checked' , false)
+                }
+            })
         })
     </script>
 @endsection
