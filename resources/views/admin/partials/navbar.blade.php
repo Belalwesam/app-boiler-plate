@@ -393,7 +393,7 @@
                                     </div>
                                     <div class="flex-grow-1">
                                         <span class="fw-semibold d-block lh-1">{{ auth('admin')->user()->name }}</span>
-                                        <small>Admin</small>
+                                        <small>{{ auth('admin')->user()->getRole() }}</small>
                                     </div>
                                 </div>
                             </a>
