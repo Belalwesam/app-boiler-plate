@@ -5,7 +5,7 @@
     data-assets-path="/dashboard/assets/" data-template="vertical-menu-template">
 
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
 
@@ -46,6 +46,7 @@
     <script src="{{ asset('/dashboard/assets/vendor/js/helpers.js') }}"></script>
 
     <script src="{{ asset('/dashboard/assets/js/config.js') }}"></script>
+    @yield('css-vendor')
 </head>
 
 <body>
@@ -113,6 +114,9 @@
 
     <!-- Main JS -->
     <script src="{{ asset('/dashboard/assets/js/main.js') }}"></script>
+
+    @yield('script-vendor')
+    @yield('script')
 </body>
 
 </html>
