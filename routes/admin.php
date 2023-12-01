@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Auth\AuthController;
+use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
@@ -28,6 +29,15 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
         Route::group(['middleware' => 'auth:admin', 'as' => 'admin.'], function () {
             #placeholder route 
             Route::view('/', 'admin.pages.index')->name('index');
+
+
+
+            #roles routes (prefix is stand alone because of overlapping)
+            Route::prefix('roles')->group(function () {
+                Route::group(['as' => 'roles.', 'controller' => RoleController::class], function () {
+                    Route::get('/', 'index')->name('index');
+                });
+            });
         });
     });
 });
