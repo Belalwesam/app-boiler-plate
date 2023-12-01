@@ -164,7 +164,11 @@
                     name : $('#name').val(),
                     permissions : permissions
                 }
-                console.log(permissions)
+                //send the request 
+
+                // $.ajax({
+                    
+                // })
             })
         })
     </script>

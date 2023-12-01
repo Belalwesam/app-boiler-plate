@@ -11,4 +11,7 @@ class RoleController extends Controller
     {
         return view('admin.pages.roles.index');
     }
+    public function store() {
+        
+    }
 }
