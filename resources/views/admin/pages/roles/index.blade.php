@@ -191,6 +191,7 @@
                     },
                     error: function(response) {
                         errorMessage("@lang('general.error')")
+                        displayErrors(response)
                     },
                 }).done(function() {
                     formBtn.html("@lang('general.create')")

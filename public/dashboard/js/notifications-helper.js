@@ -21,3 +21,8 @@ function errorMessage(message) {
         buttonsStyling: false,
     });
 }
+
+function displayErrors(response) {
+    let errorsList = JSON.parse(response.responseText).errors;
+    console.log(errorsList);
+}
