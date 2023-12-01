@@ -52,12 +52,22 @@
      <div class="menu-inner-shadow"></div>
 
      <ul class="menu-inner py-1">
-         <!-- Apps & Pages -->
+         <!-- Dashboard -->
          <li class="menu-header small text-uppercase"><span class="menu-header-text">Dashboard</span></li>
          <li class="menu-item">
              <a href="{{ route('admin.index') }}" class="menu-link">
                  <i class="menu-icon tf-icons bx bxs-dashboard"></i>
                  <div data-i18n="@lang('nav.dashboard')">@lang('nav.dashboard')</div>
+             </a>
+         </li>
+
+
+         <!-- Roles & Permissions -->
+         <li class="menu-header small text-uppercase"><span class="menu-header-text">@lang('nav.roles_and_permissions')</span></li>
+         <li class="menu-item">
+             <a href="{{ route('admin.roles.index') }}" class="menu-link">
+                 <i class="menu-icon tf-icons bx bxs-check-shield"></i>
+                 <div data-i18n="@lang('nav.roles_and_permissions')">@lang('nav.roles_and_permissions')</div>
              </a>
          </li>
      </ul>

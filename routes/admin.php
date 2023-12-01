@@ -34,7 +34,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
             #roles routes (prefix is stand alone because of overlapping)
             Route::prefix('roles')->group(function () {
-                Route::group(['as' => 'roles.', 'controller' => RoleController::class], function () {
+                Route::group(['as' => 'roles.', 'controller' => RoleController::class, 'middleware' => ['can:see roles']], function () {
                     Route::get('/', 'index')->name('index');
                 });
             });

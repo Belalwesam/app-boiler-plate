@@ -86,6 +86,6 @@ class Admin extends Authenticatable
 
     public function getRole()
     {
-        return $this->getRoleNames()[0];
+        return count($this->getRoleNames()) > 0 ? $this->getRoleNames()[0] : 'Default';
     }
 }
