@@ -69,8 +69,8 @@
                     <form id="addRoleForm" class="row g-3 fv-plugins-bootstrap5 fv-plugins-framework"
                         onsubmit="return false" novalidate="novalidate">
                         <div class="col-12 mb-4 fv-plugins-icon-container">
-                            <label class="form-label" for="modalRoleName">@lang('roles.role_name')</label>
-                            <input type="text" id="modalRoleName" name="modalRoleName" class="form-control"
+                            <label class="form-label" for="name">@lang('roles.role_name')</label>
+                            <input type="text" id="name" name="name" class="form-control"
                                 placeholder="@lang('roles.role_name')" tabindex="-1">
                             <div class="fv-plugins-message-container invalid-feedback"></div>
                         </div>
@@ -101,17 +101,17 @@
                                             <td>
                                                 <div class="d-flex">
                                                     <div class="form-check me-3 me-lg-5">
-                                                        <input class="form-check-input permission-checkbox" type="checkbox">
+                                                        <input class="form-check-input permission-checkbox" value="roles" type="checkbox">
                                                         <label class="form-check-label"> Read
                                                         </label>
                                                     </div>
                                                     <div class="form-check me-3 me-lg-5">
-                                                        <input class="form-check-input permission-checkbox" type="checkbox">
+                                                        <input class="form-check-input permission-checkbox" value="users" type="checkbox">
                                                         <label class="form-check-label"> Write
                                                         </label>
                                                     </div>
                                                     <div class="form-check">
-                                                        <input class="form-check-input permission-checkbox" type="checkbox">
+                                                        <input class="form-check-input permission-checkbox" value="admins" type="checkbox">
                                                         <label class="form-check-label"> Create
                                                         </label>
                                                     </div>
@@ -124,7 +124,7 @@
                             <!-- Permission table -->
                         </div>
                         <div class="col-12 text-center">
-                            <button type="submit" class="btn btn-primary me-sm-3 me-1">@lang('general.create')</button>
+                            <button type="button" id="submit-create-btn" class="btn btn-primary me-sm-3 me-1">@lang('general.create')</button>
                             <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="modal"
                                 aria-label="Close">
                                 @lang('general.cancel')
@@ -144,14 +144,27 @@
 @section('script')
     <script>
         $('document').ready(function() {
-
             //handle select all checkbox
             $('body').on('change', '#selectAllCheckbox', function() {
                 if ($(this).is(":checked")) {
-                    $('.permission-checkbox').prop('checked' , true)
+                    $('.permission-checkbox').prop('checked', true)
                 } else {
-                    $('.permission-checkbox').prop('checked' , false)
+                    $('.permission-checkbox').prop('checked', false)
                 }
+            })
+
+            //create new ajax request
+            $('body').on('click' , '#submit-create-btn' , function() {
+                //collect selected checkboxes
+                let permissions = $('.permission-checkbox:checked').map(function() {
+                    return $(this).val()
+                }).get()
+                let data = {
+                    _token : "{!! csrf_token() !!}",
+                    name : $('#name').val(),
+                    permissions : permissions
+                }
+                console.log(permissions)
             })
         })
     </script>
