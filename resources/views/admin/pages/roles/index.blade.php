@@ -189,7 +189,9 @@
                         successMessage("@lang('general.create_success')")
                         $('#addRoleModal').modal('toggle')
                     },
-                    error: function(response) {},
+                    error: function(response) {
+                        errorMessage("@lang('general.error')")
+                    },
                 }).done(function() {
                     formBtn.html("@lang('general.create')")
                     formBtn.prop('disabled', false)

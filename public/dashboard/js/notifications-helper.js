@@ -10,6 +10,14 @@ function successMessage(message) {
     });
 }
 
-// function errorMessage(message) {}
-
-// successMessage("you did it");
+function errorMessage(message) {
+    Swal.fire({
+        title: "Error",
+        text: message,
+        icon: "error",
+        customClass: {
+            confirmButton: "btn btn-primary",
+        },
+        buttonsStyling: false,
+    });
+}
