@@ -1,4 +1,9 @@
 @extends('admin.layout.app')
+@section('css-vendor')
+    <link rel="stylesheet" href="{{ asset('/dashboard/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('/dashboard/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
+@endsection
 @section('content')
     <h4 class="py-3 breadcrumb-wrapper mb-2">@lang('roles.roles')</h4>
 
@@ -60,8 +65,31 @@
                 </div>
             </div>
         </div>
+        <div class="col-12">
+            <!-- Role Table -->
+            <div class="card">
+                <div class="card-datatable table-responsive">
+                    <table class="datatables-users table border-top">
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>User</th>
+                                <th>Role</th>
+                                <th>Plan</th>
+                                <th>Billing</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <!--/ Role Table -->
+        </div>
     </div>
     <!--/ Role cards -->
+
+
 
     <!-- Add Role Modal -->
     <!-- Add Role Modal -->
@@ -155,9 +183,6 @@
     <!--/ Add Role Modal -->
     <!-- / Add Role Modal -->
 
-
-
-
     <!-- Edit Role Modal -->
     <!-- Edit Role Modal -->
     <div class="modal fade" id="editRoleModal" tabindex="-1" aria-hidden="true">
@@ -240,10 +265,22 @@
     <!--/ Edit Role Modal -->
     <!-- / Edit Role Modal -->
 @endsection
-
+@section('script-vendor')
+    <script src="{{ asset('/dashboard/assets/vendor/libs/datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('/dashboard/assets/vendor/libs/datatables-bs5/datatables-bootstrap5.js') }}"></script>
+    <script src="{{ asset('/dashboard/assets/vendor/libs/datatables-responsive/datatables.responsive.js') }}"></script>
+    <script src="{{ asset('/dashboard/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.js') }}"></script>
+@endsection
 @section('script')
     <script>
         $('document').ready(function() {
+
+            //create datatable 
+            $('.datatables-users').DataTable({})
+
+
+
+
             //handle select all checkbox
             $('body').on('change', '#selectAllCheckbox', function() {
                 if ($(this).is(":checked")) {
