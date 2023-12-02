@@ -25,6 +25,9 @@ class RoleController extends Controller
     }
     public function store(RoleRequest $request)
     {
+        $this->validate($request, [
+            'name' => 'unique:roles,name'
+        ]);
         $role = Role::create(['name' => $request->name, 'guard_name' => 'admin']);
         if ($request->has('permissions') && $request->filled('permissions')) {
             $permissions = Permission::whereIn('id', $request->permissions)->get();
@@ -56,7 +59,7 @@ class RoleController extends Controller
                             <span class='avatar-initial rounded-circle bg-info'>{$row->getInitials()}</span>
                         </div>";
 
-                        return $initials;
+                return $initials;
             })
             ->rawColumns(['initials'])
             ->make(true);
