@@ -13,7 +13,7 @@ function successMessage(message) {
         $(this).remove();
     });
     $(".is-invalid").each(function () {
-        $(this).removeClass('is-invalid');
+        $(this).removeClass("is-invalid");
     });
 }
 
@@ -32,9 +32,9 @@ function errorMessage(message) {
 function displayErrors(response) {
     let errorsList = JSON.parse(response.responseText).errors;
     for (const [key, value] of Object.entries(errorsList)) {
-        $(`[name="${key}"]`).next().remove();
+        $(`[name="edit_${key}"]`).next().remove();
         let error = `<div class="invalid-feedback">${value}</div>`;
-        $(`[name="${key}"]`).after(error);
-        $(`[name="${key}"]`).addClass("is-invalid");
+        $(`[name="edit_${key}"]`).after(error);
+        $(`[name="edit_${key}"]`).addClass("is-invalid");
     }
 }

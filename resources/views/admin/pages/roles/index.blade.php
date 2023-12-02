@@ -308,6 +308,10 @@
 
             //clicking the edit button transfers data to the form 
             $('body').on('click', '.role-edit-btn', function() {
+                $(".is-invalid").each(function() {
+                    $(this).removeClass("is-invalid");
+                    $('.invalid-feedback').remove();
+                });
                 $('.edit_permission-checkbox').each(function() {
                     $(this).prop('checked', false)
                 })
@@ -325,7 +329,7 @@
             })
 
 
-            //create new ajax request
+            //edit ajax request
             $('body').on('click', '#submit-edit-btn', function() {
                 let permissions = $('.edit_permission-checkbox:checked').map(
                     function() { //collect selected checkboxes
@@ -334,7 +338,7 @@
                 let data = {
                     _token: "{!! csrf_token() !!}",
                     name: $('#edit_name').val(),
-                    id : $('#edit_id').val(),
+                    id: $('#edit_id').val(),
                     permissions: permissions
                 }
                 let formBtn = $(this) // the button that sends the reuquest (to minipulate ui)

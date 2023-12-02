@@ -8,7 +8,7 @@ return [
     'permissions' => 'Permissions',
     'roles_list' => 'A role provides access to predefined menus and features <br/> so that depending on
     assigned role a user can have access to features. ',
-    'total_users' => 'Total Uaers',
+    'total_users' => 'Total Users',
     'edit_role' => 'Edit Role ',
     'create_role' => 'Create Role',
     'role_name' => 'Role Name',
