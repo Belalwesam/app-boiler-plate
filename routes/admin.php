@@ -37,6 +37,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
                 Route::group(['as' => 'roles.', 'controller' => RoleController::class, 'middleware' => ['can:see roles']], function () {
                     Route::get('/', 'index')->name('index');
                     Route::post('/', 'store')->name('store');
+                    Route::patch('/' , 'update')->name('update');
                 });
             });
         });
