@@ -24,5 +24,10 @@ function errorMessage(message) {
 
 function displayErrors(response) {
     let errorsList = JSON.parse(response.responseText).errors;
-    console.log(errorsList);
+    for (const [key, value] of Object.entries(errorsList)) {
+        $(`[name="${key}"]`).next().remove();
+        let error = `<div class="invalid-feedback">${value}</div>`;
+        $(`[name="${key}"]`).after(error);
+        $(`[name="${key}"]`).addClass("is-invalid");
+    }
 }
