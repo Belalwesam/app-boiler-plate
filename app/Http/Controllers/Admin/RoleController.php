@@ -55,6 +55,8 @@ class RoleController extends Controller
                 $initials = "<div class='avatar'>
                             <span class='avatar-initial rounded-circle bg-info'>{$row->getInitials()}</span>
                         </div>";
+
+                        return $initials;
             })
             ->rawColumns(['initials'])
             ->make(true);

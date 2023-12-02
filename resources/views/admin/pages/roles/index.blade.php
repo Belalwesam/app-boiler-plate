@@ -274,15 +274,15 @@
             //create datatable 
             let table = $('.datatables-users')
             table.DataTable({
-                order: [
-                    [0, 'desc']
-                ],
+                order: [],
                 processing: true,
                 serverSide: true,
                 ajax: "{{ route('admin.roles.role_users') }}",
                 columns: [{
-                        data: '',
-                        name: 'initials'
+                        data: 'initials',
+                        name: 'initials',
+                        orderable: false,
+                        searchable: false
                     },
                     {
                         data: 'name',
