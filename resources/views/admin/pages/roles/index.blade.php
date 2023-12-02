@@ -194,8 +194,8 @@
                                             <td>
                                                 <div class="form-check">
                                                     <input class="form-check-input" type="checkbox"
-                                                        id="selectAllCheckbox">
-                                                    <label class="form-check-label" for="selectAll">
+                                                        id="editSelectAllCheckbox">
+                                                    <label class="form-check-label" for="editSelectAllCheckbox">
                                                         @lang('general.select_all')</label>
                                                 </div>
                                             </td>
@@ -296,6 +296,15 @@
 
 
             /* the edit part */
+            //handle select all checkbox (in edit mode)
+            $('body').on('change', '#editSelectAllCheckbox', function() {
+                if ($(this).is(":checked")) {
+                    $('.edit_permission-checkbox').prop('checked', true)
+                } else {
+                    $('.edit_permission-checkbox').prop('checked', false)
+                }
+            })
+
             //clicking the edit button transfers data to the form 
             $('body').on('click', '.role-edit-btn', function() {
                 $('.edit_permission-checkbox').each(function() {
@@ -309,6 +318,48 @@
                     if (permissions.includes(permissionId)) {
                         $(this).prop('checked', true)
                     }
+                })
+            })
+
+
+            //create new ajax request
+            $('body').on('click', '#submit-edit-btn', function() {
+                let permissions = $('.edit_permission-checkbox:checked').map(
+                    function() { //collect selected checkboxes
+                        return $(this).val()
+                    }).get()
+                let data = {
+                    _token: "{!! csrf_token() !!}",
+                    name: $('#edit_name').val(),
+                    permissions: permissions
+                }
+                let formBtn = $(this) // the button that sends the reuquest (to minipulate ui)
+
+                $.ajax({
+                    method: 'POST',
+                    url: "{!! route('admin.roles.store') !!}",
+                    data: data,
+                    beforeSend: function() {
+                        formBtn.html(
+                            '<span class="spinner-border" role="status" aria-hidden="true"></span>'
+                        )
+                        formBtn.prop('disabled', true)
+                    },
+                    success: function(response) {
+                        successMessage("@lang('general.create_success')")
+                        $('#addRoleModal').modal('toggle')
+                        document.getElementById("addRoleForm").reset();
+                    },
+                    error: function(response) {
+                        errorMessage("@lang('general.error')")
+                        displayErrors(response)
+                    },
+                }).done(function() {
+                    formBtn.html("@lang('general.create')")
+                    formBtn.prop('disabled', false)
+                }).fail(function() {
+                    formBtn.html("@lang('general.create')")
+                    formBtn.prop('disabled', false)
                 })
             })
         })
