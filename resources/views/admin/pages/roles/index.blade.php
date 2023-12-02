@@ -1,5 +1,8 @@
 @extends('admin.layout.app')
 @section('css-vendor')
+@section('title')
+    @lang('roles.roles_and_permissions')
+@endsection
     <link rel="stylesheet" href="{{ asset('/dashboard/assets/vendor/libs/datatables-bs5/datatables.bootstrap5.css') }}" />
     <link rel="stylesheet"
         href="{{ asset('/dashboard/assets/vendor/libs/datatables-responsive-bs5/responsive.bootstrap5.css') }}" />
@@ -73,8 +76,8 @@
                         <thead>
                             <tr>
                                 <th></th>
-                                <th>User</th>
-                                <th>Role</th>
+                                <th>@lang('tables.name')</th>
+                                <th>@lang('tables.role')</th>
                             </tr>
                         </thead>
                     </table>
