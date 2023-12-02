@@ -49,7 +49,7 @@ class RoleController extends Controller
         return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('role', function ($row) {
-                return $row->getRoleNames()[0];
+                return $row->getRole();
             })
             ->addColumn('initials', function ($row) {
                 $initials = "<div class='avatar'>
