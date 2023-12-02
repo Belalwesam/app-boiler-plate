@@ -9,6 +9,7 @@ use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\RoleRequest;
 use Spatie\Permission\Models\Permission;
+use Yajra\DataTables\Facades\DataTables;
 
 class RoleController extends Controller
 {
@@ -41,5 +42,21 @@ class RoleController extends Controller
             $role->syncPermissions($permissions);
         }
         return http_response_code(200);
+    }
+    public function getRoleUsers()
+    {
+        $data = Admin::with('roles')->get();
+        return DataTables::of($data)
+            ->addIndexColumn()
+            ->addColumn('role', function ($row) {
+                return $row->getRoleNames()[0];
+            })
+            ->addColumn('initials', function ($row) {
+                $initials = "<div class='avatar'>
+                            <span class='avatar-initial rounded-circle bg-info'>{$row->getInitials()}</span>
+                        </div>";
+            })
+            ->rawColumns(['initials'])
+            ->make(true);
     }
 }

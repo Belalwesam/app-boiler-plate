@@ -38,6 +38,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
                     Route::get('/', 'index')->name('index');
                     Route::post('/', 'store')->name('store');
                     Route::patch('/' , 'update')->name('update');
+                    Route::get('/role-users' , 'getRoleUsers')->name('role_users'); // get role users for datatable
                 });
             });
         });

@@ -75,10 +75,6 @@
                                 <th></th>
                                 <th>User</th>
                                 <th>Role</th>
-                                <th>Plan</th>
-                                <th>Billing</th>
-                                <th>Status</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
                     </table>
@@ -276,11 +272,28 @@
         $('document').ready(function() {
 
             //create datatable 
-            $('.datatables-users').DataTable({})
-
-
-
-
+            let table = $('.datatables-users')
+            table.DataTable({
+                order: [
+                    [0, 'desc']
+                ],
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('admin.roles.role_users') }}",
+                columns: [{
+                        data: '',
+                        name: 'initials'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'role',
+                        name: 'role'
+                    },
+                ]
+            })
             //handle select all checkbox
             $('body').on('change', '#selectAllCheckbox', function() {
                 if ($(this).is(":checked")) {
