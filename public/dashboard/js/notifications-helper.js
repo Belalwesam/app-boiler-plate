@@ -29,12 +29,22 @@ function errorMessage(message) {
     });
 }
 
-function displayErrors(response) {
+function displayErrors(response, editMethod) {
     let errorsList = JSON.parse(response.responseText).errors;
-    for (const [key, value] of Object.entries(errorsList)) {
-        $(`[name="edit_${key}"]`).next().remove();
-        let error = `<div class="invalid-feedback">${value}</div>`;
-        $(`[name="edit_${key}"]`).after(error);
-        $(`[name="edit_${key}"]`).addClass("is-invalid");
+    console.log(editMethod);
+    if (!editMethod) {
+        for (const [key, value] of Object.entries(errorsList)) {
+            $(`[name="${key}"]`).next().remove();
+            let error = `<div class="invalid-feedback">${value}</div>`;
+            $(`[name="${key}"]`).after(error);
+            $(`[name="${key}"]`).addClass("is-invalid");
+        }
+    } else {
+        for (const [key, value] of Object.entries(errorsList)) {
+            $(`[name="edit_${key}"]`).next().remove();
+            let error = `<div class="invalid-feedback">${value}</div>`;
+            $(`[name="edit_${key}"]`).after(error);
+            $(`[name="edit_${key}"]`).addClass("is-invalid");
+        }
     }
 }

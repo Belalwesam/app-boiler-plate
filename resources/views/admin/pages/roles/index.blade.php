@@ -284,7 +284,7 @@
                     },
                     error: function(response) {
                         errorMessage("@lang('general.error')")
-                        displayErrors(response)
+                        displayErrors(response, false)
                     },
                 }).done(function() {
                     formBtn.html("@lang('general.create')")
@@ -360,7 +360,7 @@
                     },
                     error: function(response) {
                         errorMessage("@lang('general.error')")
-                        displayErrors(response)
+                        displayErrors(response, true)
                     },
                 }).done(function() {
                     formBtn.html("@lang('general.edit')")
