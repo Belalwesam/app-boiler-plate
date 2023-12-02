@@ -16,7 +16,8 @@
                             <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
                                 @foreach ($role->users as $admin)
                                     <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                        title="" class="avatar avatar-sm" data-bs-original-title="{{ $admin->name }}">
+                                        title="" class="avatar avatar-sm"
+                                        data-bs-original-title="{{ $admin->name }}">
                                         <span
                                             class="avatar-initial rounded-circle bg-label-secondary">{{ $admin->getInitials() }}</span>
                                     </li>
@@ -27,7 +28,9 @@
                             <div class="role-heading">
                                 <h4 class="mb-1">{{ $role->name }}</h4>
                                 <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#addRoleModal"
-                                    class="role-edit-modal"><small>@lang('roles.edit_role')</small></a>
+                                    data-name = "{{ $role->name }}"
+                                    data-permissions = "{{ $role->permissions->pluck('id') }}"
+                                    class="role-edit-btn"><small>@lang('roles.edit_role')</small></a>
                             </div>
                         </div>
                     </div>
@@ -206,6 +209,12 @@
                     formBtn.html("@lang('general.create')")
                     formBtn.prop('disabled', false)
                 })
+            })
+
+
+            //clicking the edit button transfers data to the form 
+            $('body').on('click' , '.role-edit-btn' , function() {
+                console.log('yes')
             })
         })
     </script>
