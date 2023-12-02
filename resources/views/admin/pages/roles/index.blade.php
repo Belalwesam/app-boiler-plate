@@ -16,7 +16,7 @@
                             <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
                                 @foreach ($role->users as $admin)
                                     <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
-                                        title="" class="avatar avatar-sm" data-bs-original-title="Vinnie Mostowy">
+                                        title="" class="avatar avatar-sm" data-bs-original-title="{{ $admin->name }}">
                                         <span
                                             class="avatar-initial rounded-circle bg-label-secondary">{{ $admin->getInitials() }}</span>
                                     </li>
