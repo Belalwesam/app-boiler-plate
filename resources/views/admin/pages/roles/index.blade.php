@@ -28,7 +28,7 @@
                             <div class="role-heading">
                                 <h4 class="mb-1">{{ $role->name }}</h4>
                                 <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#editRoleModal"
-                                    data-name = "{{ $role->name }}"
+                                    data-name = "{{ $role->name }}" data-id = "{{ $role->id }}"
                                     data-permissions = "{{ $role->permissions->pluck('id') }}"
                                     class="role-edit-btn"><small>@lang('roles.edit_role')</small></a>
                             </div>
@@ -222,6 +222,7 @@
                             </div>
                             <!-- Permission table -->
                         </div>
+                        <input type="hidden" id="edit_id">
                         <div class="col-12 text-center">
                             <button type="button" id="submit-edit-btn"
                                 class="btn btn-primary me-sm-3 me-1">@lang('general.edit')</button>
@@ -312,7 +313,9 @@
                 })
                 let permissions = $(this).data('permissions')
                 let name = $(this).data('name')
+                let id = $(this).data('id')
                 $('#edit_name').val(name)
+                $('#edit_id').val(id)
                 $('.edit_permission-checkbox').each(function() {
                     let permissionId = +($(this).val())
                     if (permissions.includes(permissionId)) {
@@ -331,13 +334,14 @@
                 let data = {
                     _token: "{!! csrf_token() !!}",
                     name: $('#edit_name').val(),
+                    id : $('#edit_id').val(),
                     permissions: permissions
                 }
                 let formBtn = $(this) // the button that sends the reuquest (to minipulate ui)
 
                 $.ajax({
-                    method: 'POST',
-                    url: "{!! route('admin.roles.store') !!}",
+                    method: 'PATCH',
+                    url: "{!! route('admin.roles.update') !!}",
                     data: data,
                     beforeSend: function() {
                         formBtn.html(
@@ -346,19 +350,19 @@
                         formBtn.prop('disabled', true)
                     },
                     success: function(response) {
-                        successMessage("@lang('general.create_success')")
-                        $('#addRoleModal').modal('toggle')
-                        document.getElementById("addRoleForm").reset();
+                        successMessage("@lang('general.edit_success')")
+                        $('#editRoleModal').modal('toggle')
+                        document.getElementById("editRoleForm").reset();
                     },
                     error: function(response) {
                         errorMessage("@lang('general.error')")
                         displayErrors(response)
                     },
                 }).done(function() {
-                    formBtn.html("@lang('general.create')")
+                    formBtn.html("@lang('general.edit')")
                     formBtn.prop('disabled', false)
                 }).fail(function() {
-                    formBtn.html("@lang('general.create')")
+                    formBtn.html("@lang('general.edit')")
                     formBtn.prop('disabled', false)
                 })
             })
