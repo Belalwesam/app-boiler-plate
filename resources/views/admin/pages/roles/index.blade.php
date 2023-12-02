@@ -327,8 +327,6 @@
                     }
                 })
             })
-
-
             //edit ajax request
             $('body').on('click', '#submit-edit-btn', function() {
                 let permissions = $('.edit_permission-checkbox:checked').map(
