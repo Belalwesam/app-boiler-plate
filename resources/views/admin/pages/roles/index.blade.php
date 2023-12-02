@@ -188,6 +188,7 @@
                     success: function(response) {
                         successMessage("@lang('general.create_success')")
                         $('#addRoleModal').modal('toggle')
+                        document.getElementById("addRoleForm").reset();
                     },
                     error: function(response) {
                         errorMessage("@lang('general.error')")

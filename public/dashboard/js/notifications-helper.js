@@ -8,6 +8,13 @@ function successMessage(message) {
         },
         buttonsStyling: false,
     });
+
+    $(".invalid-feedback").each(function () {
+        $(this).remove();
+    });
+    $(".is-invalid").each(function () {
+        $(this).removeClass('is-invalid');
+    });
 }
 
 function errorMessage(message) {
