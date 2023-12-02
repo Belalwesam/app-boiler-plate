@@ -251,7 +251,7 @@
                     $('.permission-checkbox').prop('checked', false)
                 }
             })
-
+            /* the create part */
             //create new ajax request
             $('body').on('click', '#submit-create-btn', function() {
                 let permissions = $('.permission-checkbox:checked').map(
@@ -295,12 +295,21 @@
             })
 
 
+            /* the edit part */
             //clicking the edit button transfers data to the form 
             $('body').on('click', '.role-edit-btn', function() {
+                $('.edit_permission-checkbox').each(function() {
+                    $(this).prop('checked', false)
+                })
                 let permissions = $(this).data('permissions')
                 let name = $(this).data('name')
-
                 $('#edit_name').val(name)
+                $('.edit_permission-checkbox').each(function() {
+                    let permissionId = +($(this).val())
+                    if (permissions.includes(permissionId)) {
+                        $(this).prop('checked', true)
+                    }
+                })
             })
         })
     </script>
