@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\User;
+use App\Models\Admin;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
@@ -13,7 +15,12 @@ class RoleController extends Controller
     public function index()
     {
         $permissions = Permission::all()->groupBy('permission_group');
-        return view('admin.pages.roles.index', compact('permissions'));
+        $roles = Role::all();
+        foreach ($roles as $role) {
+            $role_users = Admin::role($role)->get();
+            $role->users = $role_users;
+        }
+        return view('admin.pages.roles.index', compact('permissions' , 'roles'));
     }
     public function store(RoleRequest $request)
     {

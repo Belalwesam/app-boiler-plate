@@ -7,28 +7,33 @@
     </p>
     <!-- Role cards -->
     <div class="row g-4">
-        <div class="col-xl-4 col-lg-6 col-md-6">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between mb-2">
-                        <h6 class="fw-normal">@lang('roles.total_users') 4</h6>
-                        <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
-                            <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top" title=""
-                                class="avatar avatar-sm" data-bs-original-title="Vinnie Mostowy">
-                                <span class="avatar-initial rounded-circle bg-label-secondary">pi</span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-end">
-                        <div class="role-heading">
-                            <h4 class="mb-1">Administrator</h4>
-                            <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#addRoleModal"
-                                class="role-edit-modal"><small>@lang('roles.edit_role')</small></a>
+        @foreach ($roles as $role)
+            <div class="col-xl-4 col-lg-6 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between mb-2">
+                            <h6 class="fw-normal">@lang('roles.total_users') {{ count($role->users) }}</h6>
+                            <ul class="list-unstyled d-flex align-items-center avatar-group mb-0">
+                                @foreach ($role->users as $admin)
+                                    <li data-bs-toggle="tooltip" data-popup="tooltip-custom" data-bs-placement="top"
+                                        title="" class="avatar avatar-sm" data-bs-original-title="Vinnie Mostowy">
+                                        <span
+                                            class="avatar-initial rounded-circle bg-label-secondary">{{ $admin->getInitials() }}</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-end">
+                            <div class="role-heading">
+                                <h4 class="mb-1">{{ $role->name }}</h4>
+                                <a href="javascript:;" data-bs-toggle="modal" data-bs-target="#addRoleModal"
+                                    class="role-edit-modal"><small>@lang('roles.edit_role')</small></a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
         <div class="col-xl-4 col-lg-6 col-md-6">
             <div class="card h-100">
                 <div class="row h-100">
