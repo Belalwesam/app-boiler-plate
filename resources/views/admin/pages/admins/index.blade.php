@@ -220,6 +220,7 @@
 @section('script')
     <script>
         $('document').ready(function() {
+            //initialise datatables
             function startDataTable() {
                 // Variable declaration for table
                 var dt_user_table = $('.datatables-users'),
@@ -655,61 +656,6 @@
                                         .each(function(d, j) {
                                             select.append('<option value="' + d + '">' + d +
                                                 '</option>');
-                                        });
-                                });
-                            // Adding plan filter once table initialized
-                            this.api()
-                                .columns(3)
-                                .every(function() {
-                                    var column = this;
-                                    var select = $(
-                                            '<select id="UserPlan" class="form-select text-capitalize"><option value=""> Select Plan </option></select>'
-                                        )
-                                        .appendTo('.user_plan')
-                                        .on('change', function() {
-                                            var val = $.fn.dataTable.util.escapeRegex($(this)
-                                                .val());
-                                            column.search(val ? '^' + val + '$' : '', true,
-                                                false).draw();
-                                        });
-
-                                    column
-                                        .data()
-                                        .unique()
-                                        .sort()
-                                        .each(function(d, j) {
-                                            select.append('<option value="' + d + '">' + d +
-                                                '</option>');
-                                        });
-                                });
-                            // Adding status filter once table initialized
-                            this.api()
-                                .columns(5)
-                                .every(function() {
-                                    var column = this;
-                                    var select = $(
-                                            '<select id="FilterTransaction" class="form-select text-capitalize"><option value=""> Select Status </option></select>'
-                                        )
-                                        .appendTo('.user_status')
-                                        .on('change', function() {
-                                            var val = $.fn.dataTable.util.escapeRegex($(this)
-                                                .val());
-                                            column.search(val ? '^' + val + '$' : '', true,
-                                                false).draw();
-                                        });
-
-                                    column
-                                        .data()
-                                        .unique()
-                                        .sort()
-                                        .each(function(d, j) {
-                                            select.append(
-                                                '<option value="' +
-                                                statusObj[d].title +
-                                                '" class="text-capitalize">' +
-                                                statusObj[d].title +
-                                                '</option>'
-                                            );
                                         });
                                 });
                         }
