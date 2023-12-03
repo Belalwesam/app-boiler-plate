@@ -72,6 +72,17 @@
                  </a>
              </li>
          @endif
+
+         @if (auth()->user()->hasAbilityTo('see admins'))
+             <!-- Adminstrators -->
+             <li class="menu-header small text-uppercase"><span class="menu-header-text">@lang('nav.adminstrators')</span></li>
+             <li class="menu-item">
+                 <a href="{{ route('admin.admins.index') }}" class="menu-link">
+                     <i class="menu-icon tf-icons bx bxs-user-circle"></i>
+                     <div data-i18n="@lang('nav.admins')">@lang('nav.admins')</div>
+                 </a>
+             </li>
+         @endif
      </ul>
  </aside>
  <!-- / Menu -->

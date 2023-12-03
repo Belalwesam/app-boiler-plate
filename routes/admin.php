@@ -46,7 +46,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
             #admins crud routes (prefix is stand alone because of overlapping)
             Route::prefix('admins')->group(function () {
-                Route::group(['as' => 'admins.', 'controller' => AdminController::class, 'middleware' => ['can:see roles']], function () {
+                Route::group(['as' => 'admins.', 'controller' => AdminController::class, 'middleware' => ['can:see admins']], function () {
                     Route::get('/', 'index')->name('index');
                     Route::post('/', 'store')->name('store');
                     Route::patch('/', 'update')->name('update');
