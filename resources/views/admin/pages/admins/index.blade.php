@@ -221,23 +221,23 @@
             //initialise datatables
             function startDataTable() {
                 // Variable declaration for table
-                var dt_user_table = $('.datatables-users'),
-                    select2 = $('.select2'),
-                    userView = 'app-user-view-account.html',
-                    statusObj = {
-                        1: {
-                            title: 'Pending',
-                            class: 'bg-label-warning'
-                        },
-                        2: {
-                            title: 'Active',
-                            class: 'bg-label-success'
-                        },
-                        3: {
-                            title: 'Inactive',
-                            class: 'bg-label-secondary'
-                        }
-                    };
+                var dt_user_table = $('.datatables-users')
+                select2 = $('.select2'),
+                    userView = 'app-user-view-account.html'
+                statusObj = {
+                    1: {
+                        title: 'Pending',
+                        class: 'bg-label-warning'
+                    },
+                    2: {
+                        title: 'Active',
+                        class: 'bg-label-success'
+                    },
+                    3: {
+                        title: 'Inactive',
+                        class: 'bg-label-secondary'
+                    }
+                };
 
                 if (select2.length) {
                     var $this = select2;
@@ -251,28 +251,21 @@
                 if (dt_user_table.length) {
                     var dt_user = dt_user_table.DataTable({
                         ajax: "{!! route('admin.admins.admins_list') !!}",
-                        columns: [
-                            // columns according to JSON
-                            {
-                                name: 'initials',
-                                data: 'initials'
+                        columns: [{
+                                data: ''
                             },
                             {
-                                name: 'name',
                                 data: 'name'
                             },
                             {
-                                name: 'role',
                                 data: 'role'
                             },
                             {
-                                name: 'created_at',
                                 data: 'created_at'
                             },
                             {
-                                name: 'actions',
                                 data: 'actions'
-                            }
+                            },
                         ],
                         columnDefs: [{
                                 // For Responsive
@@ -285,10 +278,49 @@
                                     return '';
                                 }
                             },
-                            
-                            
-                            
-                          
+                            {
+                                // User full name and email
+                                targets: 1,
+                                responsivePriority: 4,
+                                render: function(data, type, full, meta) {
+                                    var $name = full['name'],
+                                        $initials = full['initials'],
+                                        $userName = full['username'];
+                                    // For Avatar badge
+                                    var stateNum = Math.floor(Math.random() * 6);
+                                    var states = ['success', 'danger', 'warning', 'info',
+                                        'dark', 'primary', 'secondary'
+                                    ];
+                                    var $state = states[stateNum],
+                                        $name = full['name'],
+                                        $initials = $name.match(/\b\w/g) || [];
+                                    $initials = (($initials.shift() || '') + ($initials.pop() ||
+                                        '')).toUpperCase();
+                                    $output =
+                                        '<span class="avatar-initial rounded-circle bg-label-' +
+                                        $state + '">' + $initials + '</span>';
+                                    // Creates full output for row
+                                    var $row_output =
+                                        '<div class="d-flex justify-content-start align-items-center user-name">' +
+                                        '<div class="avatar-wrapper">' +
+                                        '<div class="avatar avatar-sm me-3">' +
+                                        $output +
+                                        '</div>' +
+                                        '</div>' +
+                                        '<div class="d-flex flex-column">' +
+                                        '<a href="' +
+                                        userView +
+                                        '" class="text-body text-truncate"><span class="fw-semibold">' +
+                                        $name +
+                                        '</span></a>' +
+                                        '<small class="text-muted">' +
+                                        $userName +
+                                        '</small>' +
+                                        '</div>' +
+                                        '</div>';
+                                    return $row_output;
+                                }
+                            },
                         ],
                         order: [
                             [1, 'desc']
@@ -554,18 +586,6 @@
                         }
                     });
                 }
-
-                // Delete Record
-                $('.datatables-users tbody').on('click', '.delete-record', function() {
-                    dt_user.row($(this).parents('tr')).remove().draw();
-                });
-
-                // Filter form control to default size
-                // ? setTimeout used for multilingual table initialization
-                setTimeout(() => {
-                    $('.dataTables_filter .form-control').removeClass('form-control-sm');
-                    $('.dataTables_length .form-select').removeClass('form-select-sm');
-                }, 300);
             }
             startDataTable()
 
