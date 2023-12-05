@@ -264,6 +264,7 @@
                                 data: 'created_at'
                             },
                             {
+                                name:'actions',
                                 data: 'actions'
                             },
                         ],
