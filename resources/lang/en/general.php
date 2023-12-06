@@ -9,6 +9,9 @@ return [
     'create_success' => 'Created Successfully',
     'edit_success' => 'Updated Successfully',
     'error' => 'Something went wrong',
-    'actions' => 'Actions'
-
+    'actions' => 'Actions',
+    'filter' => 'Search Filter',
+    'search' => 'Search',
+    'previous' => 'Previous',
+    'next' => 'Next'
 ];

@@ -9,5 +9,9 @@ return [
     'create_success' => 'تم الإنشاء بنجاح',
     'edit_success' => 'تم التعديل بنجاح',
     'error' => 'لقد حدث خطأ ما',
-    'actions' => 'إجراءات'
+    'actions' => 'إجراءات',
+    'filter' => 'تصفية النتائج',
+    'search' => 'بحث',
+    'previous' => 'السابق',
+    'next' => 'التالي'
 ];

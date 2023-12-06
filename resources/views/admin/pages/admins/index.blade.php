@@ -96,7 +96,7 @@
     <!-- Users List Table -->
     <div class="card">
         <div class="card-header border-bottom">
-            <h5 class="card-title">Search Filter</h5>
+            <h5 class="card-title">@lang('general.filter')</h5>
             <div class="d-flex justify-content-between align-items-center row py-3 gap-3 gap-md-0">
                 <div class="col-md-4 user_role"></div>
                 <div class="col-md-4 user_plan"></div>
@@ -264,7 +264,7 @@
                                 data: 'created_at'
                             },
                             {
-                                name:'actions',
+                                name: 'actions',
                                 data: 'actions'
                             },
                         ],
@@ -337,192 +337,21 @@
                         language: {
                             sLengthMenu: '_MENU_',
                             search: '',
-                            searchPlaceholder: 'Search..'
+                            searchPlaceholder: '@lang('general.search')..',
+                            paginate: {
+                                previous: '@lang('general.previous')',
+                                next: '@lang('general.next')'
+                            }
                         },
                         // Buttons with Dropdown
                         buttons: [{
-                                extend: 'collection',
-                                className: 'btn btn-label-secondary dropdown-toggle mx-3',
-                                text: '<i class="bx bx-upload me-2"></i>Export',
-                                buttons: [{
-                                        extend: 'print',
-                                        text: '<i class="bx bx-printer me-2" ></i>Print',
-                                        className: 'dropdown-item',
-                                        exportOptions: {
-                                            columns: [1, 2, 3, 4, 5],
-                                            // prevent avatar to be print
-                                            format: {
-                                                body: function(inner, coldex, rowdex) {
-                                                    if (inner.length <= 0) return inner;
-                                                    var el = $.parseHTML(inner);
-                                                    var result = '';
-                                                    $.each(el, function(index, item) {
-                                                        if (item.classList !==
-                                                            undefined && item.classList
-                                                            .contains('user-name')) {
-                                                            result = result + item
-                                                                .lastChild.firstChild
-                                                                .textContent;
-                                                        } else if (item.innerText ===
-                                                            undefined) {
-                                                            result = result + item
-                                                                .textContent;
-                                                        } else result = result + item
-                                                            .innerText;
-                                                    });
-                                                    return result;
-                                                }
-                                            }
-                                        },
-                                        customize: function(win) {
-                                            //customize print view for dark
-                                            $(win.document.body)
-                                                .css('color', config.colors.headingColor)
-                                                .css('border-color', config.colors.borderColor)
-                                                .css('background-color', config.colors.body);
-                                            $(win.document.body)
-                                                .find('table')
-                                                .addClass('compact')
-                                                .css('color', 'inherit')
-                                                .css('border-color', 'inherit')
-                                                .css('background-color', 'inherit');
-                                        }
-                                    },
-                                    {
-                                        extend: 'csv',
-                                        text: '<i class="bx bx-file me-2" ></i>Csv',
-                                        className: 'dropdown-item',
-                                        exportOptions: {
-                                            columns: [1, 2, 3, 4, 5],
-                                            // prevent avatar to be display
-                                            format: {
-                                                body: function(inner, coldex, rowdex) {
-                                                    if (inner.length <= 0) return inner;
-                                                    var el = $.parseHTML(inner);
-                                                    var result = '';
-                                                    $.each(el, function(index, item) {
-                                                        if (item.classList !==
-                                                            undefined && item.classList
-                                                            .contains('user-name')) {
-                                                            result = result + item
-                                                                .lastChild.firstChild
-                                                                .textContent;
-                                                        } else if (item.innerText ===
-                                                            undefined) {
-                                                            result = result + item
-                                                                .textContent;
-                                                        } else result = result + item
-                                                            .innerText;
-                                                    });
-                                                    return result;
-                                                }
-                                            }
-                                        }
-                                    },
-                                    {
-                                        extend: 'excel',
-                                        text: 'Excel',
-                                        className: 'dropdown-item',
-                                        exportOptions: {
-                                            columns: [1, 2, 3, 4, 5],
-                                            // prevent avatar to be display
-                                            format: {
-                                                body: function(inner, coldex, rowdex) {
-                                                    if (inner.length <= 0) return inner;
-                                                    var el = $.parseHTML(inner);
-                                                    var result = '';
-                                                    $.each(el, function(index, item) {
-                                                        if (item.classList !==
-                                                            undefined && item.classList
-                                                            .contains('user-name')) {
-                                                            result = result + item
-                                                                .lastChild.firstChild
-                                                                .textContent;
-                                                        } else if (item.innerText ===
-                                                            undefined) {
-                                                            result = result + item
-                                                                .textContent;
-                                                        } else result = result + item
-                                                            .innerText;
-                                                    });
-                                                    return result;
-                                                }
-                                            }
-                                        }
-                                    },
-                                    {
-                                        extend: 'pdf',
-                                        text: '<i class="bx bxs-file-pdf me-2"></i>Pdf',
-                                        className: 'dropdown-item',
-                                        exportOptions: {
-                                            columns: [1, 2, 3, 4, 5],
-                                            // prevent avatar to be display
-                                            format: {
-                                                body: function(inner, coldex, rowdex) {
-                                                    if (inner.length <= 0) return inner;
-                                                    var el = $.parseHTML(inner);
-                                                    var result = '';
-                                                    $.each(el, function(index, item) {
-                                                        if (item.classList !==
-                                                            undefined && item.classList
-                                                            .contains('user-name')) {
-                                                            result = result + item
-                                                                .lastChild.firstChild
-                                                                .textContent;
-                                                        } else if (item.innerText ===
-                                                            undefined) {
-                                                            result = result + item
-                                                                .textContent;
-                                                        } else result = result + item
-                                                            .innerText;
-                                                    });
-                                                    return result;
-                                                }
-                                            }
-                                        }
-                                    },
-                                    {
-                                        extend: 'copy',
-                                        text: '<i class="bx bx-copy me-2" ></i>Copy',
-                                        className: 'dropdown-item',
-                                        exportOptions: {
-                                            columns: [1, 2, 3, 4, 5],
-                                            // prevent avatar to be display
-                                            format: {
-                                                body: function(inner, coldex, rowdex) {
-                                                    if (inner.length <= 0) return inner;
-                                                    var el = $.parseHTML(inner);
-                                                    var result = '';
-                                                    $.each(el, function(index, item) {
-                                                        if (item.classList !==
-                                                            undefined && item.classList
-                                                            .contains('user-name')) {
-                                                            result = result + item
-                                                                .lastChild.firstChild
-                                                                .textContent;
-                                                        } else if (item.innerText ===
-                                                            undefined) {
-                                                            result = result + item
-                                                                .textContent;
-                                                        } else result = result + item
-                                                            .innerText;
-                                                    });
-                                                    return result;
-                                                }
-                                            }
-                                        }
-                                    }
-                                ]
-                            },
-                            {
-                                text: '<i class="bx bx-plus me-0 me-lg-2"></i><span class="d-none d-lg-inline-block">Add New User</span>',
-                                className: 'add-new btn btn-primary',
-                                attr: {
-                                    'data-bs-toggle': 'offcanvas',
-                                    'data-bs-target': '#offcanvasAddUser'
-                                }
+                            text: '<i class="bx bx-plus me-0 me-lg-2"></i><span class="d-none d-lg-inline-block">@lang('admins.add')</span>',
+                            className: 'add-new btn btn-primary ms-3',
+                            attr: {
+                                'data-bs-toggle': 'offcanvas',
+                                'data-bs-target': '#offcanvasAddUser'
                             }
-                        ],
+                        }],
                         // For responsive popup
                         responsive: {
                             details: {
@@ -566,7 +395,7 @@
                                 .every(function() {
                                     var column = this;
                                     var select = $(
-                                            '<select id="UserRole" class="form-select text-capitalize"><option value=""> Select Role </option></select>'
+                                            '<select id="UserRole" class="form-select text-capitalize"><option value="">@lang('admins.select_role')</option></select>'
                                         )
                                         .appendTo('.user_role')
                                         .on('change', function() {
@@ -587,6 +416,10 @@
                         }
                     });
                 }
+                setTimeout(() => {
+                    $('.dataTables_filter .form-control').removeClass('form-control-sm');
+                    $('.dataTables_length .form-select').removeClass('form-select-sm');
+                }, 300);
             }
             startDataTable()
 

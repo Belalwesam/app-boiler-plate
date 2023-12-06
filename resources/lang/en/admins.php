@@ -6,4 +6,6 @@ return [
     'name' => 'Name',
     'role' => 'Role',
     'created_at' => 'Creation Date',
+    'add' => 'Add New Admin',
+    'select_role' => 'Select Role'
 ];
