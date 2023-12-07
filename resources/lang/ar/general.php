@@ -14,5 +14,6 @@ return [
     'search' => 'بحث',
     'previous' => 'السابق',
     'next' => 'التالي',
-    'delete' => 'حذف'
+    'delete' => 'حذف',
+    'select' => 'تحديد',
 ];

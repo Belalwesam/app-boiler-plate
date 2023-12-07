@@ -7,5 +7,10 @@ return [
     'role' => 'Role',
     'created_at' => 'Creation Date',
     'add' => 'Add New Admin',
-    'select_role' => 'Select Role'
+    'select_role' => 'Select Role',
+    'add_admin' => 'Add Admin',
+    'name' => 'Name',
+    'username' => 'Username',
+    'email' => 'E-mail',
+    'password' => 'Password'
 ];
