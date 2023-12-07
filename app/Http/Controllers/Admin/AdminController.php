@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Models\Admin;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -11,7 +12,8 @@ class AdminController extends Controller
 {
   public function index()
   {
-    return view('admin.pages.admins.index');
+    $roles = Role::all();
+    return view('admin.pages.admins.index' , compact('roles'));
   }
 
   public function getAdminsList()

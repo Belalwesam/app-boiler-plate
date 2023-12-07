@@ -143,13 +143,20 @@
                         <label class="form-label" for="role">@lang('admins.role')</label>
                         <select id="role" class="form-select">
                             <option value="">@lang('general.select')</option>
-                            <option value="Australia">Australia</option>
-                            <option value="Bangladesh">Bangladesh</option>
-                            <option value="Belarus">Belarus</option>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
                         </select>
                     </div>
-                    <button type="submit" class="btn btn-primary me-sm-3 me-1 data-submit">@lang('general.create')</button>
-                    <button type="reset" class="btn btn-label-secondary" data-bs-dismiss="offcanvas">@lang('geenral.cancel')</button>
+                    <div class="mb-3">
+                        <label class="form-label" for="password">@lang('admins.password')</label>
+                        <input type="password" id="password" class="form-control" placeholder="********"
+                            aria-label="********" name="password" />
+                    </div>
+                    <button type="button" role="button" id="submit-create-btn"
+                        class="btn btn-primary me-sm-3 me-1">@lang('general.create')</button>
+                    <button type="reset" class="btn btn-label-secondary"
+                        data-bs-dismiss="offcanvas">@lang('general.cancel')</button>
                 </form>
             </div>
         </div>
@@ -381,6 +388,47 @@
 
             //crud operations
 
+            //create new ajax request
+            $('body').on('click', '#submit-create-btn', function() {
+                let data = {
+                    _token: "{!! csrf_token() !!}",
+                    name: $('#name').val(),
+                    username: $('#username').val(),
+                    role: $('#role').val(),
+                    password: $('#password').val(),
+                    email: $('#email').val(),
+                }
+                console.log(data)
+                return
+                let formBtn = $(this) // the button that sends the reuquest (to minipulate ui)
+
+                $.ajax({
+                    method: 'POST',
+                    url: "{!! route('admin.roles.store') !!}",
+                    data: data,
+                    beforeSend: function() {
+                        formBtn.html(
+                            '<span class="spinner-border" role="status" aria-hidden="true"></span>'
+                        )
+                        formBtn.prop('disabled', true)
+                    },
+                    success: function(response) {
+                        successMessage("@lang('general.create_success')")
+                        $('#addRoleModal').modal('toggle')
+                        document.getElementById("addRoleForm").reset();
+                    },
+                    error: function(response) {
+                        errorMessage("@lang('general.error')")
+                        displayErrors(response, false)
+                    },
+                }).done(function() {
+                    formBtn.html("@lang('general.create')")
+                    formBtn.prop('disabled', false)
+                }).fail(function() {
+                    formBtn.html("@lang('general.create')")
+                    formBtn.prop('disabled', false)
+                })
+            })
         })
     </script>
 @endsection
