@@ -111,7 +111,7 @@
                         <th>@lang('admins.name')</th>
                         <th>@lang('admins.role')</th>
                         <th>@lang('admins.created_at')</th>
-                        <th>@lang('general.actions')</th>
+                        <th class="d-flex justify-content-center">@lang('general.actions')</th>
                     </tr>
                 </thead>
             </table>

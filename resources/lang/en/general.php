@@ -13,5 +13,6 @@ return [
     'filter' => 'Search Filter',
     'search' => 'Search',
     'previous' => 'Previous',
-    'next' => 'Next'
+    'next' => 'Next',
+    'delete' => 'Delete'
 ];
