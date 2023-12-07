@@ -398,13 +398,11 @@
                     password: $('#password').val(),
                     email: $('#email').val(),
                 }
-                console.log(data)
-                return
                 let formBtn = $(this) // the button that sends the reuquest (to minipulate ui)
 
                 $.ajax({
                     method: 'POST',
-                    url: "{!! route('admin.roles.store') !!}",
+                    url: "{!! route('admin.admins.store') !!}",
                     data: data,
                     beforeSend: function() {
                         formBtn.html(
@@ -415,7 +413,7 @@
                     success: function(response) {
                         successMessage("@lang('general.create_success')")
                         $('#addRoleModal').modal('toggle')
-                        document.getElementById("addRoleForm").reset();
+                        document.getElementById("addNewAdminForm").reset();
                     },
                     error: function(response) {
                         errorMessage("@lang('general.error')")
@@ -424,6 +422,7 @@
                 }).done(function() {
                     formBtn.html("@lang('general.create')")
                     formBtn.prop('disabled', false)
+                    $('#offcanvasAddAdmin').offcanvas('hide')
                 }).fail(function() {
                     formBtn.html("@lang('general.create')")
                     formBtn.prop('disabled', false)

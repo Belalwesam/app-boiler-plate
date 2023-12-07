@@ -54,4 +54,8 @@ class AdminController extends Controller
       ->rawColumns(['initials', 'actions'])
       ->make(true);
   }
+
+  public function store(Request $request) {
+    return $request->all();
+  }
 }
