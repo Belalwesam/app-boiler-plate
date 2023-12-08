@@ -8,6 +8,7 @@ use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\AdminStoreRequest;
+use App\Http\Requests\Admin\AdminUpdateRequest;
 
 class AdminController extends Controller
 {
@@ -70,5 +71,9 @@ class AdminController extends Controller
     $admin = Admin::create($request->validated());
     $admin->syncRoles(Role::find($request->role));
     return http_response_code(200);
+  }
+
+  public function update(AdminUpdateRequest $request) {
+    return $request->all();
   }
 }
