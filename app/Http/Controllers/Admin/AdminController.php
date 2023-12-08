@@ -7,13 +7,14 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use App\Http\Controllers\Controller;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Requests\Admin\AdminStoreRequest;
 
 class AdminController extends Controller
 {
   public function index()
   {
     $roles = Role::all();
-    return view('admin.pages.admins.index' , compact('roles'));
+    return view('admin.pages.admins.index', compact('roles'));
   }
 
   public function getAdminsList()
@@ -55,7 +56,8 @@ class AdminController extends Controller
       ->make(true);
   }
 
-  public function store(Request $request) {
+  public function store(AdminStoreRequest $request)
+  {
     return $request->all();
   }
 }

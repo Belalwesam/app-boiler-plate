@@ -141,7 +141,7 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="role">@lang('admins.role')</label>
-                        <select id="role" class="form-select">
+                        <select id="role" class="form-select" name="role">
                             <option value="">@lang('general.select')</option>
                             @foreach ($roles as $role)
                                 <option value="{{ $role->id }}">{{ $role->name }}</option>
