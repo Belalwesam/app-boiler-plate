@@ -160,6 +160,54 @@
                 </form>
             </div>
         </div>
+
+        <!-- Offcanvas to edit admin -->
+        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditAdmin"
+            aria-labelledby="offcanvasEditAdminLabel">
+            <div class="offcanvas-header border-bottom">
+                <h6 id="offcanvasAddUserLabel" class="offcanvas-title">@lang('admins.add_admin')</h6>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                    aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body mx-0 flex-grow-0">
+                <form class="edit-admin pt-0" id="editAdminForm" onsubmit="return false">
+                    <input type="hidden" id="edit_id">
+                    <div class="mb-3">
+                        <label class="form-label" for="edit_name">@lang('admins.name')</label>
+                        <input type="text" class="form-control" id="edit_name" placeholder="John Doe" name="edit_name"
+                            aria-label="John Doe" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="edit_username">@lang('admins.username')</label>
+                        <input type="text" class="form-control" id="edit_username" placeholder="John Doe"
+                            name="edit_username" aria-label="John Doe" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="edit_email">@lang('admins.email')</label>
+                        <input type="email" id="edit_email" class="form-control" placeholder="john.doe@example.com"
+                            aria-label="john.doe@example.com" name="edit_email" />
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="edit_role">@lang('admins.role')</label>
+                        <select id="edit_role" class="form-select" name="edit_role">
+                            <option value="">@lang('general.select')</option>
+                            @foreach ($roles as $role)
+                                <option value="{{ $role->id }}">{{ $role->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label" for="edit_password">@lang('admins.password')</label>
+                        <input type="password" id="edit_password" class="form-control" placeholder="********"
+                            aria-label="********" name="edit_password" />
+                    </div>
+                    <button type="button" role="button" id="submit-create-btn"
+                        class="btn btn-primary me-sm-3 me-1">@lang('general.create')</button>
+                    <button type="reset" class="btn btn-label-secondary"
+                        data-bs-dismiss="offcanvas">@lang('general.cancel')</button>
+                </form>
+            </div>
+        </div>
     </div>
 @endsection
 
@@ -405,6 +453,16 @@
                     formBtn.html("@lang('general.create')")
                     formBtn.prop('disabled', false)
                 })
+            })
+
+
+            //populate table when pressing edit admin (from table)
+            $('body').on('click' , '.edit-btn' , function() {
+                $('#edit_name').val($(this).data('name'))
+                $('#edit_username').val($(this).data('username'))
+                $('#edit_email').val($(this).data('email'))
+                $('#edit_role').val($(this).data('role'))
+                $('edit_id').val($(this).data('id'))
             })
         })
     </script>
