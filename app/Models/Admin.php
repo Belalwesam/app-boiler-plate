@@ -22,6 +22,7 @@ class Admin extends Authenticatable
         'name',
         'email',
         'password',
+        'username'
     ];
 
     /**
@@ -43,6 +44,16 @@ class Admin extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    /**
+     * The hashed password.
+     *
+     * @var string<string, string>
+     */
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
 
 
     #get initials to be displayed through the app

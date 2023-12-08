@@ -58,6 +58,8 @@ class AdminController extends Controller
 
   public function store(AdminStoreRequest $request)
   {
-    return $request->all();
+    $admin = Admin::create($request->validated());
+    $admin->syncRoles(Role::find($request->role));
+    return http_response_code(200);
   }
 }

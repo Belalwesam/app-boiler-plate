@@ -186,29 +186,6 @@
                 var dt_user_table = $('.datatables-users')
                 select2 = $('.select2'),
                     userView = 'app-user-view-account.html'
-                statusObj = {
-                    1: {
-                        title: 'Pending',
-                        class: 'bg-label-warning'
-                    },
-                    2: {
-                        title: 'Active',
-                        class: 'bg-label-success'
-                    },
-                    3: {
-                        title: 'Inactive',
-                        class: 'bg-label-secondary'
-                    }
-                };
-
-                if (select2.length) {
-                    var $this = select2;
-                    $this.wrap('<div class="position-relative"></div>').select2({
-                        placeholder: 'Select Country',
-                        dropdownParent: $this.parent()
-                    });
-                }
-
                 // Users datatable
                 if (dt_user_table.length) {
                     var dt_user = dt_user_table.DataTable({
@@ -414,6 +391,7 @@
                         successMessage("@lang('general.create_success')")
                         $('#addRoleModal').modal('toggle')
                         document.getElementById("addNewAdminForm").reset();
+                        $('.datatables-users').DataTable().ajax.reload()
                     },
                     error: function(response) {
                         errorMessage("@lang('general.error')")
