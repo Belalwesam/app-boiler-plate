@@ -505,6 +505,12 @@
                     formBtn.prop('disabled', false)
                 })
             })
+
+
+            //delete btn (from table)
+            $('body').on('click' , '.delete-btn' , function() {
+                let id = $(this).data('id')
+            })
         })
     </script>
 @endsection

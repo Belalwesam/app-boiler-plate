@@ -55,7 +55,10 @@ class AdminController extends Controller
                               data-bs-toggle="offcanvas"
                               data-bs-target = "#offcanvasEditAdmin"
                               href="javascript:void(0);"><i class="bx bx-edit me-0 me-lg-2 text-primary"></i>{$edit_text}</a></li>
-                             <li><a class="dropdown-item" href="javascript:void(0);"><i class="bx bx-trash me-0 me-lg-2 text-danger"></i>{$delete_text}</a></li>
+                             <li>
+                              <a class="dropdown-item delete-btn"
+                                data-id = "{$row->id}"
+                              href="javascript:void(0);"><i class="bx bx-trash me-0 me-lg-2 text-danger"></i>{$delete_text}</a></li>
                           </ul>
                         </div>
                 HTML;
