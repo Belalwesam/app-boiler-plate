@@ -165,7 +165,7 @@
         <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasEditAdmin"
             aria-labelledby="offcanvasEditAdminLabel">
             <div class="offcanvas-header border-bottom">
-                <h6 id="offcanvasAddUserLabel" class="offcanvas-title">@lang('admins.add_admin')</h6>
+                <h6 id="offcanvasAddUserLabel" class="offcanvas-title">@lang('admins.edit_admin')</h6>
                 <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
                     aria-label="Close"></button>
             </div>
@@ -174,8 +174,8 @@
                     <input type="hidden" id="edit_id">
                     <div class="mb-3">
                         <label class="form-label" for="edit_name">@lang('admins.name')</label>
-                        <input type="text" class="form-control" id="edit_name" placeholder="John Doe" name="edit_name"
-                            aria-label="John Doe" />
+                        <input type="text" class="form-control" id="edit_name" placeholder="John Doe"
+                            name="edit_name" aria-label="John Doe" />
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="edit_username">@lang('admins.username')</label>
@@ -201,8 +201,8 @@
                         <input type="password" id="edit_password" class="form-control" placeholder="********"
                             aria-label="********" name="edit_password" />
                     </div>
-                    <button type="button" role="button" id="submit-create-btn"
-                        class="btn btn-primary me-sm-3 me-1">@lang('general.create')</button>
+                    <button type="button" role="button" id="submit-edit-btn"
+                        class="btn btn-primary me-sm-3 me-1">@lang('general.edit')</button>
                     <button type="reset" class="btn btn-label-secondary"
                         data-bs-dismiss="offcanvas">@lang('general.cancel')</button>
                 </form>
@@ -457,12 +457,53 @@
 
 
             //populate table when pressing edit admin (from table)
-            $('body').on('click' , '.edit-btn' , function() {
+            $('body').on('click', '.edit-btn', function() {
                 $('#edit_name').val($(this).data('name'))
                 $('#edit_username').val($(this).data('username'))
                 $('#edit_email').val($(this).data('email'))
                 $('#edit_role').val($(this).data('role'))
-                $('edit_id').val($(this).data('id'))
+                $('#edit_id').val($(this).data('id'))
+            })
+
+            //edit ajax request
+            $('body').on('click', '#submit-edit-btn', function() {
+                let data = {
+                    _token: "{!! csrf_token() !!}",
+                    name: $('#edit_name').val(),
+                    username: $('#edit_username').val(),
+                    email: $('#edit_email').val(),
+                    password: $('#edit_password').val(),
+                    role: $('#edit_role').val(),
+                    id: $('#edit_id').val(),
+                }
+                let formBtn = $(this) // the button that sends the reuquest (to minipulate ui)
+
+                $.ajax({
+                    method: 'PATCH',
+                    url: "{!! route('admin.admins.update') !!}",
+                    data: data,
+                    beforeSend: function() {
+                        formBtn.html(
+                            '<span class="spinner-border" role="status" aria-hidden="true"></span>'
+                        )
+                        formBtn.prop('disabled', true)
+                    },
+                    success: function(response) {
+                        successMessage("@lang('general.edit_success')")
+                        $('.datatables-users').DataTable().ajax.reload()
+                        $('#offcanvasEditAdmin').offcanvas('hide')
+                    },
+                    error: function(response) {
+                        errorMessage("@lang('general.error')")
+                        displayErrors(response, true)
+                    },
+                }).done(function() {
+                    formBtn.html("@lang('general.edit')")
+                    formBtn.prop('disabled', false)
+                }).fail(function() {
+                    formBtn.html("@lang('general.edit')")
+                    formBtn.prop('disabled', false)
+                })
             })
         })
     </script>

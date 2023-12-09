@@ -9,6 +9,7 @@ return [
     'add' => 'Add New Admin',
     'select_role' => 'Select Role',
     'add_admin' => 'Add Admin',
+    'edit_admin' => 'Edit Admin',
     'name' => 'Name',
     'username' => 'Username',
     'email' => 'E-mail',

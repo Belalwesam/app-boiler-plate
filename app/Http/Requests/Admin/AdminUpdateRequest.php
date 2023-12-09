@@ -25,7 +25,7 @@ class AdminUpdateRequest extends FormRequest
             'name' => 'required|string',
             'username' => 'required|string|unique:admins,username,' . request()->id,
             'email' => 'required|email|unique:admins,email,' . request()->id,
-            'password' => 'sometimes|min:8',
+            'password' => 'nullable|sometimes|min:8',
             'role' => 'required|integer'
         ];
     }

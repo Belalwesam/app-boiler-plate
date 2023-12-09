@@ -73,7 +73,14 @@ class AdminController extends Controller
     return http_response_code(200);
   }
 
-  public function update(AdminUpdateRequest $request) {
-    return $request->all();
+  public function update(AdminUpdateRequest $request)
+  {
+    $admin = Admin::findOrFail($request->id);
+    $admin->update($request->validated());
+    $admin->syncRoles(Role::find($request->role));
+    if ($request->has('password') && $request->filled('password')) {
+      $admin->update(['password' => bcrypt($request->password)]);
+    }
+    return http_response_code(200);
   }
 }
