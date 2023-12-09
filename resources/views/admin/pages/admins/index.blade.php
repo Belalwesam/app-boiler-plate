@@ -166,8 +166,7 @@
             aria-labelledby="offcanvasEditAdminLabel">
             <div class="offcanvas-header border-bottom">
                 <h6 id="offcanvasAddUserLabel" class="offcanvas-title">@lang('admins.edit_admin')</h6>
-                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                    aria-label="Close"></button>
+                <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body mx-0 flex-grow-0">
                 <form class="edit-admin pt-0" id="editAdminForm" onsubmit="return false">
@@ -508,8 +507,33 @@
 
 
             //delete btn (from table)
-            $('body').on('click' , '.delete-btn' , function() {
+            $('body').on('click', '.delete-btn', function() {
                 let id = $(this).data('id')
+                Swal.fire({
+                    title: "@lang('general.confirmation')",
+                    text: " @lang('general.cant_revert')",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    cancelButtonText: "@lang('general.cancel')",
+                    confirmButtonText: "@lang('general.delete')",
+                    customClass: {
+                        confirmButton: 'btn btn-danger me-3',
+                        cancelButton: 'btn btn-label-secondary'
+                    },
+                    buttonsStyling: false
+                }).then(function(result) {
+                    // if (result.value) {
+                    //     Swal.fire({
+                    //         icon: 'success',
+                    //         title: 'Deleted!',
+                    //         text: 'Your file has been deleted.',
+                    //         customClass: {
+                    //             confirmButton: 'btn btn-success'
+                    //         }
+                    //     });
+                    // }
+                    console.log(id)
+                });
             })
         })
     </script>

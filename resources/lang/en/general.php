@@ -16,5 +16,7 @@ return [
     'next' => 'Next',
     'delete' => 'Delete',
     'select' => 'Select',
+    'confirmation' => 'Are You sure?',
+    'cant_revert' => "You won't be able to revert this"
 
 ];

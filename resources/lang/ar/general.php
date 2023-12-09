@@ -16,4 +16,6 @@ return [
     'next' => 'التالي',
     'delete' => 'حذف',
     'select' => 'تحديد',
+    'confirmation' => 'هل أنت متأكد؟',
+    'cant_revert' => 'لن تتمكن من عكس هذه العملية'
 ];
