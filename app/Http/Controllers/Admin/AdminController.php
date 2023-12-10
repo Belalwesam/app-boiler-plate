@@ -86,4 +86,9 @@ class AdminController extends Controller
     }
     return http_response_code(200);
   }
+  public function destroy(Request $request)
+  {
+    Admin::findOrFail($request->id)->delete();
+    return http_response_code(200);
+  }
 }
