@@ -34,7 +34,9 @@ function displayErrors(response, editMethod) {
     //remove all elements that has invalid class within (to clear the errors list)
     $(".is-invalid").each(function () {
         $(this).removeClass("is-invalid");
-        $(".invalid-feedback").remove();
+    });
+    $(".invalid-feeback").each(function () {
+        $(this).remove();
     });
     if (!editMethod) {
         for (const [key, value] of Object.entries(errorsList)) {
@@ -46,6 +48,7 @@ function displayErrors(response, editMethod) {
     } else {
         for (const [key, value] of Object.entries(errorsList)) {
             $(`[name="edit_${key}"]`).removeClass("is-invalid");
+            $(`[name="edit_${key}"]`).next().remove();
             let error = `<div class="invalid-feedback">${value}</div>`;
             $(`[name="edit_${key}"]`).after(error);
             $(`[name="edit_${key}"]`).addClass("is-invalid");
