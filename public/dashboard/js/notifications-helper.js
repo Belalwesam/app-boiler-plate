@@ -31,12 +31,12 @@ function errorMessage(message) {
 
 function displayErrors(response, editMethod) {
     let errorsList = JSON.parse(response.responseText).errors;
+    //remove all elements that has invalid class within (to clear the errors list)
+    $(".is-invalid").each(function () {
+        $(this).removeClass("is-invalid");
+        $(".invalid-feedback").remove();
+    });
     if (!editMethod) {
-        //remove all elements that has invalid class within (to clear the errors list)
-        $(".is-invalid").each(function () {
-            $(this).removeClass("is-invalid");
-            $(".invalid-feedback").remove();
-        });
         for (const [key, value] of Object.entries(errorsList)) {
             $(`[name="${key}"]`).removeClass("is-invalid");
             let error = `<div class="invalid-feedback">${value}</div>`;
