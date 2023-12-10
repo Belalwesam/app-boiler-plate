@@ -17,5 +17,6 @@ return [
     'delete' => 'حذف',
     'select' => 'تحديد',
     'confirmation' => 'هل أنت متأكد؟',
-    'cant_revert' => 'لن تتمكن من عكس هذه العملية'
+    'cant_revert' => 'لن تتمكن من عكس هذه العملية',
+    'delete_success' => 'تم الحذف بنجاح'
 ];

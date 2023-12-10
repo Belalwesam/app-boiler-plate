@@ -522,17 +522,26 @@
                     },
                     buttonsStyling: false
                 }).then(function(result) {
-                    // if (result.value) {
-                    //     Swal.fire({
-                    //         icon: 'success',
-                    //         title: 'Deleted!',
-                    //         text: 'Your file has been deleted.',
-                    //         customClass: {
-                    //             confirmButton: 'btn btn-success'
-                    //         }
-                    //     });
-                    // }
-                    console.log(id)
+                    console.log(result)
+                    if (result.value) {
+                        //ajax delete call
+                        let data = {
+                            _token: "{!! csrf_token() !!}",
+                            id: id,
+                        }
+                        $.ajax({
+                            method: 'DELETE',
+                            url: "{!! route('admin.admins.delete') !!}",
+                            data: data,
+                            success: function(response) {
+                                successMessage("@lang('general.edit_success')")
+                                $('.datatables-users').DataTable().ajax.reload()
+                            },
+                            error: function(response) {
+                                errorMessage("@lang('general.error')")
+                            },
+                        })
+                    }
                 });
             })
         })
