@@ -17,7 +17,7 @@ class AdminSeeder extends Seeder
             'name' => 'John Doe',
             'username' => 'admin',
             'email' => 'admin@tadbeer.com',
-            'password' => bcrypt('admin')
+            'password' => 'admin'
         ]);
     }
 }

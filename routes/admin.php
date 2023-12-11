@@ -54,6 +54,18 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
                     Route::get('/admins-list', 'getAdminsList')->name('admins_list'); // get role users for datatable
                 });
             });
+
+
+            #categories crud routes (prefix is stand alone because of overlapping)
+            Route::prefix('categories')->group(function () {
+                Route::group(['as' => 'categories.', 'controller' => AdminController::class, 'middleware' => ['can:see categories']], function () {
+                    Route::get('/', 'index')->name('index');
+                    Route::post('/', 'store')->name('store');
+                    Route::patch('/', 'update')->name('update');
+                    Route::delete('/', 'destroy')->name('delete');
+                    Route::get('/categories-list', 'getCategoriesList')->name('categories_list'); // get role users for datatable
+                });
+            });
         });
     });
 });

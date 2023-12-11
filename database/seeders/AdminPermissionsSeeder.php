@@ -27,6 +27,11 @@ class AdminPermissionsSeeder extends Seeder
                 'see admins',
                 'create admins',
                 'edit admins'
+            ],
+            "categories" => [
+                'see categories',
+                'create categories',
+                'edit categories'
             ]
         ];
 
