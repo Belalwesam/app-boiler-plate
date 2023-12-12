@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Auth\AuthController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Route;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
@@ -58,7 +59,7 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
 
             #categories crud routes (prefix is stand alone because of overlapping)
             Route::prefix('categories')->group(function () {
-                Route::group(['as' => 'categories.', 'controller' => AdminController::class, 'middleware' => ['can:see categories']], function () {
+                Route::group(['as' => 'categories.', 'controller' => CategoryController::class, 'middleware' => ['can:see categories']], function () {
                     Route::get('/', 'index')->name('index');
                     Route::post('/', 'store')->name('store');
                     Route::patch('/', 'update')->name('update');
