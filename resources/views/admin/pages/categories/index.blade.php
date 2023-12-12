@@ -20,7 +20,8 @@
             <h5 class="card-title mb-0">@lang('nav.categories')</h5>
             {{-- check if auth user has ability to create  --}}
             @if (auth('admin')->user()->hasAbilityTo('create categories'))
-                <button class="btn btn-primary"><i class="bx bx-plus me-0 me-lg-2"></i><span
+                <button class="btn btn-primary" data-bs-target="#addCategoryModal" data-bs-toggle="modal"><i
+                        class="bx bx-plus me-0 me-lg-2"></i><span
                         class="d-none d-lg-inline-block">@lang('categories.add_category')</span></button>
             @endif
         </div>
@@ -36,6 +37,28 @@
                     </tr>
                 </thead>
             </table>
+        </div>
+    </div>
+
+
+
+
+    <!-- Add Modal -->
+    <div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addCategoryModalLabel">Modal title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
         </div>
     </div>
 @endsection
