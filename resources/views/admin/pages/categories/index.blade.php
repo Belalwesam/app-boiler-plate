@@ -18,8 +18,11 @@
     <div class="card">
         <div class="card-header border-bottom d-flex align-items-center justify-content-between">
             <h5 class="card-title mb-0">@lang('nav.categories')</h5>
-            <button class="btn btn-primary"><i class="bx bx-plus me-0 me-lg-2"></i><span
-                    class="d-none d-lg-inline-block">@lang('categories.add_category')</span></button>
+            {{-- check if auth user has ability to create  --}}
+            @if (auth('admin')->user()->hasAbilityTo('create categories'))
+                <button class="btn btn-primary"><i class="bx bx-plus me-0 me-lg-2"></i><span
+                        class="d-none d-lg-inline-block">@lang('categories.add_category')</span></button>
+            @endif
         </div>
         <div class="card-datatable table-responsive">
             <table class="datatables-users table border-top">
