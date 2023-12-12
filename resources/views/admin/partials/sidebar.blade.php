@@ -83,6 +83,16 @@
                  </a>
              </li>
          @endif
+         @if (auth()->user()->hasAbilityTo('see categories'))
+             <!-- Adminstrators -->
+             <li class="menu-header small text-uppercase"><span class="menu-header-text">@lang('nav.categories')</span></li>
+             <li class="menu-item">
+                 <a href="{{ route('admin.categories.index') }}" class="menu-link">
+                     <i class="menu-icon tf-icons bx bx-selection"></i>
+                     <div data-i18n="@lang('nav.categories')">@lang('nav.categories')</div>
+                 </a>
+             </li>
+         @endif
      </ul>
  </aside>
  <!-- / Menu -->
