@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index() {
-        dd('here are the index for categories');
+    public function index()
+    {
+        return view('admin.pages.categories.index');
     }
 }
