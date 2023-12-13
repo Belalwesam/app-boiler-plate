@@ -48,15 +48,21 @@
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="addCategoryModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="addCategoryModalLabel">@lang('categories.add_category')</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    ...
+                    <form action="#" id="add-category-form">
+                        <div class="form-group mb-3">
+                            <label for="name" class="form-label">@lang('categories.name')</label>
+                            <input type="text" name="name" placeholder="@lang('categories.name')" id="name"
+                                class="form-control">
+                        </div>
+                    </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">@lang('general.create')</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('general.cancel')</button>
                 </div>
             </div>
         </div>
