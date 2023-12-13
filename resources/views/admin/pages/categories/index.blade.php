@@ -52,7 +52,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="#" id="add-category-form">
+                    <form action="#" id="addCategoryForm">
                         <div class="form-group mb-3">
                             <label for="name" class="form-label">@lang('categories.name')</label>
                             <input type="text" name="name" placeholder="@lang('categories.name')" id="name"
@@ -61,7 +61,7 @@
                     </form>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary">@lang('general.create')</button>
+                    <button type="button" id="submit-create-btn" class="btn btn-primary">@lang('general.create')</button>
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('general.cancel')</button>
                 </div>
             </div>
@@ -95,16 +95,12 @@
                 let data = {
                     _token: "{!! csrf_token() !!}",
                     name: $('#name').val(),
-                    username: $('#username').val(),
-                    role: $('#role').val(),
-                    password: $('#password').val(),
-                    email: $('#email').val(),
                 }
                 let formBtn = $(this) // the button that sends the reuquest (to minipulate ui)
 
                 $.ajax({
                     method: 'POST',
-                    url: "{!! route('admin.admins.store') !!}",
+                    url: "{!! route('admin.categories.store') !!}",
                     data: data,
                     beforeSend: function() {
                         formBtn.html(
@@ -114,9 +110,8 @@
                     },
                     success: function(response) {
                         successMessage("@lang('general.create_success')")
-                        $('#addRoleModal').modal('toggle')
-                        document.getElementById("addNewAdminForm").reset();
-                        $('.datatables-users').DataTable().ajax.reload()
+                        $('#addCategoryModal').modal('toggle')
+                        document.getElementById("addCategoryForm").reset();
                     },
                     error: function(response) {
                         errorMessage("@lang('general.error')")
