@@ -26,14 +26,13 @@
             @endif
         </div>
         <div class="card-datatable table-responsive">
-            <table class="datatables-users table border-top">
+            <table class="datatables-categories table border-top">
                 <thead>
                     <tr>
-                        <th></th>
-                        <th>@lang('admins.name')</th>
-                        <th>@lang('admins.role')</th>
-                        <th>@lang('admins.created_at')</th>
-                        <th class="d-flex justify-content-center" data-searchable="false">@lang('general.actions')</th>
+                        <th>@lang('categories.name')</th>
+                        <th>@lang('categories.created_at')</th>
+                        <th class="d-flex justify-content-center" data-searchable="false" data-orderable="false">
+                            @lang('general.actions')</th>
                     </tr>
                 </thead>
             </table>
@@ -87,7 +86,42 @@
     <script>
         $('document').ready(function() {
 
-
+            let datatable = $('.datatables-categories').DataTable({
+                language: {
+                    sLengthMenu: '_MENU_',
+                    search: '',
+                    searchPlaceholder: '@lang('general.search')..',
+                    paginate: {
+                        previous: '@lang('general.previous')',
+                        next: '@lang('general.next')'
+                    }
+                },
+                order: [
+                    [1, 'desc']
+                ],
+                processing: true,
+                serverSide: true,
+                ajax: "{!! route('admin.categories.categories_list') !!}",
+                columns: [{
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'created_at',
+                        name: 'created_at'
+                    },
+                    {
+                        name: 'actions',
+                        data: 'actions',
+                        searchable: false,
+                        orderable: false
+                    },
+                ],
+            })
+            setTimeout(() => {
+                $('.dataTables_filter .form-control').removeClass('form-control-sm');
+                $('.dataTables_length .form-select').removeClass('form-select-sm');
+            })
             // ----- crud operations
 
             //create new ajax request
@@ -112,6 +146,7 @@
                         successMessage("@lang('general.create_success')")
                         $('#addCategoryModal').modal('toggle')
                         document.getElementById("addCategoryForm").reset();
+                        datatable.ajax.reload()
                     },
                     error: function(response) {
                         errorMessage("@lang('general.error')")
