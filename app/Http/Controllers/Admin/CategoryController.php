@@ -39,8 +39,8 @@ class CategoryController extends Controller
                             <li><a class="dropdown-item edit-btn"
                              data-id="{$row->id}"
                              data-name = "{$row->name}"
-                              data-bs-toggle="offcanvas"
-                              data-bs-target = "#offcanvasEditAdmin"
+                              data-bs-toggle="modal"
+                              data-bs-target = "#editCategoryModal"
                               href="javascript:void(0);"><i class="bx bx-edit me-0 me-2 text-primary"></i>{$edit_text}</a></li>
                              <li>
                               <a class="dropdown-item delete-btn"
@@ -58,9 +58,15 @@ class CategoryController extends Controller
             ->rawColumns(['actions'])
             ->make(true);
     }
-
+    public function update(CategoryRequest $request)
+    {
+        $category = Category::findOrFail($request->id);
+        $category->update($request->validated());
+        return http_response_code(200);
+    }
     public function destroy(Request $request)
     {
         Category::findOrFail($request->id)->delete();
+        return http_response_code(200);
     }
 }

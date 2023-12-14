@@ -66,6 +66,33 @@
             </div>
         </div>
     </div>
+
+    <!-- Edit Modal -->
+    <div class="modal fade" id="editCategoryModal" tabindex="-1" aria-labelledby="editCategoryModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCategoryModalLabel">@lang('general.edit')</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" id="editCategoryForm">
+                        <div class="form-group mb-3">
+                            <label for="edit_name" class="form-label">@lang('categories.name')</label>
+                            <input type="text" name="edit_name" placeholder="@lang('categories.name')" id="edit_name"
+                                class="form-control">
+                        </div>
+                        <input type="hidden" id="edit_id">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="submit-edit-btn" class="btn btn-primary">@lang('general.edit')</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@lang('general.cancel')</button>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 
@@ -155,7 +182,7 @@
                 }).done(function() {
                     formBtn.html("@lang('general.create')")
                     formBtn.prop('disabled', false)
-                    $('#offcanvasAddAdmin').offcanvas('hide')
+                    $('#addCategoryModal').modal('toggle')
                 }).fail(function() {
                     formBtn.html("@lang('general.create')")
                     formBtn.prop('disabled', false)
@@ -165,9 +192,6 @@
             //populate table when pressing edit admin (from table)
             $('body').on('click', '.edit-btn', function() {
                 $('#edit_name').val($(this).data('name'))
-                $('#edit_username').val($(this).data('username'))
-                $('#edit_email').val($(this).data('email'))
-                $('#edit_role').val($(this).data('role'))
                 $('#edit_id').val($(this).data('id'))
             })
             //edit ajax request
@@ -175,17 +199,13 @@
                 let data = {
                     _token: "{!! csrf_token() !!}",
                     name: $('#edit_name').val(),
-                    username: $('#edit_username').val(),
-                    email: $('#edit_email').val(),
-                    password: $('#edit_password').val(),
-                    role: $('#edit_role').val(),
                     id: $('#edit_id').val(),
                 }
                 let formBtn = $(this) // the button that sends the reuquest (to minipulate ui)
 
                 $.ajax({
                     method: 'PATCH',
-                    url: "{!! route('admin.admins.update') !!}",
+                    url: "{!! route('admin.categories.update') !!}",
                     data: data,
                     beforeSend: function() {
                         formBtn.html(
@@ -195,8 +215,8 @@
                     },
                     success: function(response) {
                         successMessage("@lang('general.edit_success')")
-                        $('.datatables-users').DataTable().ajax.reload()
-                        $('#offcanvasEditAdmin').offcanvas('hide')
+                        $('#editCategoryModal').modal('toggle')
+                        datatable.ajax.reload()
                     },
                     error: function(response) {
                         errorMessage("@lang('general.error')")
@@ -227,7 +247,6 @@
                     },
                     buttonsStyling: false
                 }).then(function(result) {
-                    console.log(result)
                     if (result.value) {
                         //ajax delete call
                         let data = {
