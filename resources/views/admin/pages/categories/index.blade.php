@@ -112,7 +112,7 @@
 @section('script')
     <script>
         $('document').ready(function() {
-
+            //initialise datatbles
             let datatable = $('.datatables-categories').DataTable({
                 language: {
                     sLengthMenu: '_MENU_',
@@ -145,6 +145,8 @@
                     },
                 ],
             })
+
+            // to make the datatables inputs appear larger
             setTimeout(() => {
                 $('.dataTables_filter .form-control').removeClass('form-control-sm');
                 $('.dataTables_length .form-select').removeClass('form-select-sm');
