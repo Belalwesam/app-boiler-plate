@@ -236,11 +236,11 @@
                         }
                         $.ajax({
                             method: 'DELETE',
-                            url: "{!! route('admin.admins.delete') !!}",
+                            url: "{!! route('admin.categories.delete') !!}",
                             data: data,
                             success: function(response) {
                                 successMessage("@lang('general.edit_success')")
-                                $('.datatables-users').DataTable().ajax.reload()
+                                datatable.ajax.reload()
                             },
                             error: function(response) {
                                 errorMessage("@lang('general.error')")

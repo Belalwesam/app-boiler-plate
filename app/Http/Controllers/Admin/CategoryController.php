@@ -58,4 +58,9 @@ class CategoryController extends Controller
             ->rawColumns(['actions'])
             ->make(true);
     }
+
+    public function destroy(Request $request)
+    {
+        Category::findOrFail($request->id)->delete();
+    }
 }
