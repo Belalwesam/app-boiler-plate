@@ -112,6 +112,7 @@
 @section('script')
     <script>
         $('document').ready(function() {
+            test
             //initialise datatbles
             let datatable = $('.datatables-categories').DataTable({
                 language: {
